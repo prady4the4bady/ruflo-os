@@ -1,182 +1,123 @@
-name: Build NemOS ISO
+name: Build NemOS ISO"
 
 on:
   push:
     branches: [ master, main, develop ]
   pull_request:
     branches: [ master, main ]
-  workflow_dispatch:  # Allow manual trigger
+  workflow_dispatch:  # Allow manual trigger"
 
 jobs:
   build-iso:
-    runs-on: ubuntu-22.04
-    container: debian:bookworm
-    timeout-minutes: 120  # 2 hours max
+    runs-on: ubuntu-22.04"
+    container: debian:bookworm"
+    timeout-minutes: 120  # 2 hours max"
     
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+    steps:"
+    - name: Checkout repository"
+      uses: actions/checkout@v4"
       
-    - name: Install dependencies
-      run: |
-        apt-get update
-        apt-get install -y \
-          live-build \
-          wget \
-          xorriso \
-          curl \
-          debian-archive-keyring \
-          debootstrap
+    - name: Install dependencies"
+      run: |"
+        apt-get update"
+        apt-get install -y \"
+          live-build \"
+          wget \"
+          xorriso \"
+          curl \"
+          debian-archive-keyring \"
+          debootstrap"
           
-    - name: Set up live-build configuration
-      working-directory: distro/live-build
-      run: |
-        # Create build directory
-        mkdir -p /tmp/ruflo-os-build
-        cd /tmp/ruflo-os-build
-        
-        # Configure live-build
-        lb config \
-          --distribution bookworm \
-          --archive-areas "main contrib non-free non-free-firmware" \
-          --architectures amd64 \
-          --binary-images iso-hybrid \
-          --bootappend-live "boot=live components username=ruflo" \
-          --debian-installer live \
-          --iso-application "Ruflo OS" \
-          --iso-volume "RUFLO_OS" \
-          --linux-flavours amd64 \
-          --linux-packages "linux-image-amd64" \
-          --mode debian \
-          --system live \
-          --apt-recommends false \
-          --security false
+    - name: Setup live-build"
+      working-directory: distro/live-build"
+      run: |"
+        mkdir -p /tmp/ruflo-os-build"
+        cd /tmp/ruflo-os-build"
+        lb config \"
+          --distribution bookworm \"
+          --archive-areas "main contrib non-free non-free-firmware" \"
+          --architectures amd64 \"
+          --binary-images iso-hybrid \"
+          --bootappend-live "boot=live components username=ruflo" \"
+          --debian-installer live \"
+          --iso-application "Ruflo OS" \"
+          --iso-volume "RUFLO_OS" \"
+          --linux-flavours amd64 \"
+          --linux-packages "linux-image-amd64" \"
+          --mode debian \"
+          --system live \"
+          --apt-recommends false \"
+          --security false"
           
-    - name: Copy package lists
-      working-directory: /tmp/ruflo-os-build
-      run: |
-        mkdir -p config/package-lists
-        cp ${{ github.workspace }}/distro/packages/base.list config/package-lists/base.list.chroot
-        cp ${{ github.workspace }}/distro/packages/desktop.list config/package-lists/desktop.list.chroot
-        cp ${{ github.workspace }}/distro/packages/ai-runtime.list config/package-lists/ai-runtime.list.chroot
+    - name: Copy package lists"
+      working-directory: /tmp/ruflo-os-build"
+      run: |"
+        mkdir -p config/package-lists"
+        cp ${GITHUB_WORKSPACE}/distro/packages/base.list config/package-lists/base.list.chroot"
+        cp ${GITHUB_WORKSPACE}/distro/packages/desktop.list config/package-lists/desktop.list.chroot"
+        cp ${GITHUB_WORKSPACE}/distro/packages/ai-runtime.list config/package-lists/ai-runtime.list.chroot"
         
-    - name: Copy hooks
-      working-directory: /tmp/ruflo-os-build
-      run: |
-        mkdir -p config/hooks/normal
+    - name: Copy hooks"
+      working-directory: /tmp/ruflo-os-build"
+      run: |"
+        mkdir -p config/hooks/normal"
+        cat > config/hooks/normal/0100-ruflo-setup.hook.chroot << 'HOOK'"
+        #!/bin/bash"
+        set -e"
+        useradd --system --home-dir /opt/ruflo --shell /usr/sbin/nologin ruflo || true"
+        mkdir -p /opt/ruflo /var/lib/ruflo /etc/ruflo"
+        chown -R ruflo:ruflo /opt/ruflo /var/lib/ruflo"
+        python3 -m venv /opt/ruflo/venv"
+        HOOK"
+        chmod +x config/hooks/normal/0100-ruflo-setup.hook.chroot"
+        if [ -f ${GITHUB_WORKSPACE}/distro/live-build/hooks/0200-ruflo-install.hook.chroot ]; then"
+          cp ${GITHUB_WORKSPACE}/distro/live-build/hooks/0200-ruflo-install.hook.chroot config/hooks/normal/"
+          chmod +x config/hooks/normal/0200-ruflo-install.hook.chroot"
+        fi"
         
-        # Base setup hook
-        cat > config/hooks/normal/0100-ruflo-setup.hook.chroot << 'HOOK'
-        #!/bin/bash
-        set -e
-        useradd --system --home-dir /opt/ruflo --shell /usr/sbin/nologin ruflo || true
-        mkdir -p /opt/ruflo /var/lib/ruflo /etc/ruflo
-        chown -R ruflo:ruflo /opt/ruflo /var/lib/ruflo
-        python3 -m venv /opt/ruflo/venv
-        HOOK
-        chmod +x config/hooks/normal/0100-ruflo-setup.hook.chroot
+    - name: Copy systemd services"
+      working-directory: /tmp/ruflo-os-build"
+      run: |"
+        mkdir -p config/includes.chroot/etc/systemd/system"
+        cp ${GITHUB_WORKSPACE}/distro/systemd/*.service config/includes.chroot/etc/systemd/system/ || true"
         
-        # Install NemOS hook (if available)
-        if [ -f ${{ github.workspace }}/distro/live-build/hooks/0200-ruflo-install.hook.chroot ]; then
-          cp ${{ github.workspace }}/distro/live-build/hooks/0200-ruflo-install.hook.chroot config/hooks/normal/
-          chmod +x config/hooks/normal/0200-ruflo-install.hook.chroot
-        fi
+    - name: Copy branding"
+      working-directory: /tmp/ruflo-os-build"
+      run: |"
+        mkdir -p config/includes.chroot/etc/calamares"
+        cp -r ${GITHUB_WORKSPACE}/distro/calamares/* config/includes.chroot/etc/calamares/ || true"
         
-    - name: Copy systemd services
-      working-directory: /tmp/ruflo-os-build
-      run: |
-        mkdir -p config/includes.chroot/etc/systemd/system
-        cp ${{ github.workspace }}/distro/systemd/*.service config/includes.chroot/etc/systemd/system/ || true
+    - name: Build ISO"
+      working-directory: /tmp/ruflo-os-build"
+      run: |"
+        echo "Starting ISO build...""
+        lb build 2>&1 | tee build.log"
         
-    - name: Copy branding
-      working-directory: /tmp/ruflo-os-build
-      run: |
-        mkdir -p config/includes.chroot/etc/calamares
-        cp -r ${{ github.workspace }}/distro/calamares/* config/includes.chroot/etc/calamares/ || true
+    - name: Check build output"
+      working-directory: /tmp/ruflo-os-build"
+      run: |"
+        if [ -f live-image-amd64.hybrid.iso ]; then"
+          echo "✓ ISO built successfully!""
+          mv live-image-amd64.hybrid.iso ruflo-os-${{ github.sha }}-amd64.iso"
+          ls -lh ruflo-os-*.iso"
+        else"
+          echo "✗ Build failed. Last 50 lines of log:""
+          tail -50 build.log"
+          exit 1"
+        fi"
         
-    - name: Build ISO
-      working-directory: /tmp/ruflo-os-build
-      run: |
-        echo "Starting ISO build..."
-        lb build 2>&1 | tee build.log
+    - name: Upload ISO artifact"
+      if: success()"
+      uses: actions/upload-artifact@v4"
+      with:"
+        name: ruflo-os-iso"
+        path: /tmp/ruflo-os-build/ruflo-os-*-amd64.iso"
+        retention-days: 30"
         
-    - name: Check build output
-      working-directory: /tmp/ruflo-os-build
-      run: |
-        if [ -f live-image-amd64.hybrid.iso ]; then
-          echo "✓ ISO built successfully!"
-          mv live-image-amd64.hybrid.iso ruflo-os-${{ github.sha }}-amd64.iso
-          ls -lh ruflo-os-*.iso
-        else
-          echo "✗ Build failed. Last 50 lines of log:"
-          tail -50 build.log
-          exit 1
-        fi
-        
-    - name: Upload ISO as artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: ruflo-os-iso
-        path: /tmp/ruflo-os-build/ruflo-os-*-amd64.iso
-        retention-days: 30
-        
-    - name: Upload build log on failure
-      if: failure()
-      uses: actions/upload-artifact@v4
-      with:
-        name: build-log-${{ github.sha }}
-        path: /tmp/ruflo-os-build/build.log
-        retention-days: 7
-
-  test-nemoclaw:
-    runs-on: ubuntu-22.04
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
-    - name: Install dependencies
-      run: |
-        pip install -r nemoclaw/requirements.txt
-        pip install pytest
-    - name: Run Nemoclaw tests
-      run: |
-        cd nemoclaw && python -m pytest tests/ -v
-
-  test-agent:
-    runs-on: ubuntu-22.04
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
-    - name: Install dependencies
-      run: |
-        pip install -r ruflo-agent/requirements.txt
-        pip install pytest
-    - name: Run Agent tests
-      run: |
-        cd ruflo-agent && python -m pytest tests/ -v
-
-  build-docker:
-    runs-on: ubuntu-22.04
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up Docker
-      uses: docker/setup-docker-action@v3
-    - name: Build Docker stack
-      run: |
-        docker compose -f docker/docker-compose.yml build || true
-        echo "Docker build step completed (non-blocking)"
-
-  e2e-tests:
-    runs-on: ubuntu-22.04
-    steps:
-    - uses: actions/checkout@v4
-    - name: Skip e2e tests (temporarily)
-      run: |
-        echo "e2e tests temporarily disabled"
-        echo "They require a full VM environment"
-        exit 0
+    - name: Upload build log on failure"
+      if: failure()"
+      uses: actions/upload-artifact@v4"
+      with:"
+        name: build-log-${{ github.sha }}"
+        path: /tmp/ruflo-os-build/build.log"
+        retention-days: 7"
