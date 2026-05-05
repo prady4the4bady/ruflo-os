@@ -1,20 +1,20 @@
 name: Build NemOS ISO"
 
-on:
-  push:
-    branches: [ master, main, develop ]
-  pull_request:
-    branches: [ master, main ]
+on:"
+  push:"
+    branches: [ master, main, develop ]"
+  pull_request:"
+    branches: [ master, main ]"
   workflow_dispatch:  # Allow manual trigger"
 
-jobs:
-  build-iso:
-    runs-on: ubuntu-22.04"
+jobs:"
+  build-iso:"
+    runs-on: ubuntu-latest"
     container: debian:bookworm"
-    timeout-minutes: 120  # 2 hours max"
+    timeout-minutes: 120"
     
     steps:"
-    - name: Checkout repository"
+    - name: Checkout"
       uses: actions/checkout@v4"
       
     - name: Install dependencies"
@@ -53,9 +53,9 @@ jobs:
       working-directory: /tmp/ruflo-os-build"
       run: |"
         mkdir -p config/package-lists"
-        cp ${GITHUB_WORKSPACE}/distro/packages/base.list config/package-lists/base.list.chroot"
-        cp ${GITHUB_WORKSPACE}/distro/packages/desktop.list config/package-lists/desktop.list.chroot"
-        cp ${GITHUB_WORKSPACE}/distro/packages/ai-runtime.list config/package-lists/ai-runtime.list.chroot"
+        cp $GITHUB_WORKSPACE/distro/packages/base.list config/package-lists/base.list.chroot"
+        cp $GITHUB_WORKSPACE/distro/packages/desktop.list config/package-lists/desktop.list.chroot"
+        cp $GITHUB_WORKSPACE/distro/packages/ai-runtime.list config/package-lists/ai-runtime.list.chroot"
         
     - name: Copy hooks"
       working-directory: /tmp/ruflo-os-build"
@@ -70,8 +70,8 @@ jobs:
         python3 -m venv /opt/ruflo/venv"
         HOOK"
         chmod +x config/hooks/normal/0100-ruflo-setup.hook.chroot"
-        if [ -f ${GITHUB_WORKSPACE}/distro/live-build/hooks/0200-ruflo-install.hook.chroot ]; then"
-          cp ${GITHUB_WORKSPACE}/distro/live-build/hooks/0200-ruflo-install.hook.chroot config/hooks/normal/"
+        if [ -f $GITHUB_WORKSPACE/distro/live-build/hooks/0200-ruflo-install.hook.chroot ]; then"
+          cp $GITHUB_WORKSPACE/distro/live-build/hooks/0200-ruflo-install.hook.chroot config/hooks/normal/"
           chmod +x config/hooks/normal/0200-ruflo-install.hook.chroot"
         fi"
         
@@ -79,29 +79,28 @@ jobs:
       working-directory: /tmp/ruflo-os-build"
       run: |"
         mkdir -p config/includes.chroot/etc/systemd/system"
-        cp ${GITHUB_WORKSPACE}/distro/systemd/*.service config/includes.chroot/etc/systemd/system/ || true"
+        cp $GITHUB_WORKSPACE/distro/systemd/*.service config/includes.chroot/etc/systemd/system/ || true"
         
     - name: Copy branding"
       working-directory: /tmp/ruflo-os-build"
       run: |"
         mkdir -p config/includes.chroot/etc/calamares"
-        cp -r ${GITHUB_WORKSPACE}/distro/calamares/* config/includes.chroot/etc/calamares/ || true"
+        cp -r $GITHUB_WORKSPACE/distro/calamares/* config/includes.chroot/etc/calamares/ || true"
         
     - name: Build ISO"
       working-directory: /tmp/ruflo-os-build"
       run: |"
-        echo "Starting ISO build...""
         lb build 2>&1 | tee build.log"
         
     - name: Check build output"
       working-directory: /tmp/ruflo-os-build"
       run: |"
         if [ -f live-image-amd64.hybrid.iso ]; then"
-          echo "✓ ISO built successfully!""
+          echo \"✓ ISO built successfully!\""
           mv live-image-amd64.hybrid.iso ruflo-os-${{ github.sha }}-amd64.iso"
           ls -lh ruflo-os-*.iso"
         else"
-          echo "✗ Build failed. Last 50 lines of log:""
+          echo \"✗ Build failed. Last 50 lines of log:\""
           tail -50 build.log"
           exit 1"
         fi"
