@@ -1,0 +1,17 @@
+[Unit]
+Description=Ruflo Shell (macOS-style Desktop)
+After=ruflo-agent.service
+Requires=ruflo-agent.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/ruflo-compositor
+Restart=on-failure
+User=ruflo
+Group=ruflo
+Environment=DISPLAY=:0
+Environment=WAYLAND_DISPLAY=wayland-0
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+
+[Install]
+WantedBy=multi-user.target

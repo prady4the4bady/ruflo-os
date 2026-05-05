@@ -1,0 +1,32 @@
+[Unit]
+Description=Ruflo Model Gateway — Unified AI inference service
+After=network-online.target docker.service
+Wants=network-online.target
+Requires=ruflo-control-plane.service
+
+[Service]
+Type=exec
+User=ruflo
+Group=ruflo
+WorkingDirectory=/opt/ruflo/model-gateway
+ExecStart=/opt/ruflo/venv/bin/uvicorn ruflo_model_gateway.main:app \
+    --host 127.0.0.1 \
+    --port 8100 \
+    --workers 2
+EnvironmentFile=/etc/ruflo/model-gateway.env
+Restart=on-failure
+RestartSec=5
+TimeoutStartSec=30
+
+# Security hardening
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/ruflo
+PrivateTmp=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+
+[Install]
+WantedBy=multi-user.target

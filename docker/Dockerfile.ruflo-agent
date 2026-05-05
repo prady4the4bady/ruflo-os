@@ -1,0 +1,39 @@
+FROM python:3.12-slim-bookworm
+
+WORKDIR /app
+
+# System dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    build-essential \
+    ydotool \
+    xdotool \
+    tesseract-ocr \
+    libtesseract-dev \
+    wmctrl \
+    at-spi2-core \
+    libatspi2.0-dev \
+    chromium \
+    && rm -rf /var/lib/apt/lists/*
+
+# Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy Ruflo Agent source
+COPY ruflo-agent/ /app/
+COPY agent.config.yaml /app/
+
+# Create necessary directories
+RUN mkdir -p /var/ruflo/memory /run/user/1000
+
+# Non-root user
+RUN useradd -m -u 1000 ruflo && \
+    chown -R ruflo:ruflo /app /var/ruflo /run
+USER ruflo
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
+    CMD curl -f http://localhost:7474/api/v1/agent/status || exit 1
+
+CMD ["python", "-m", "ruflo-agent.core.agent_runtime"]

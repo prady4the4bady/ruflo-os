@@ -1,0 +1,55 @@
+# Core dependencies for NemOS (Ruflo OS)
+
+# GTK4/Adwaita for desktop shell
+PyGObject>=3.46.0
+pycairo>=1.25.0
+
+# Logging
+structlog>=23.1.0
+
+# HTTP client
+httpx>=0.24.0
+
+# Data validation
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+
+# API framework (for services)
+fastapi>=0.100.0
+uvicorn>=0.23.0
+
+# Database
+sqlalchemy>=2.0.0
+asyncpg>=0.28.0
+
+# Redis for caching
+redis>=5.0.0
+
+# Authentication
+python-jose>=3.3.0
+passlib>=1.7.4
+
+# Screen capture and automation
+Pillow>=10.0.0
+opencv-python>=4.8.0
+
+# OCR
+pytesseract>=0.3.10
+easyocr>=1.7.0
+
+# System monitoring
+psutil>=5.9.0
+
+# Configuration
+PyYAML>=6.0
+toml>=0.10.2
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+pytest-cov>=4.1.0
+
+# Code quality
+ruff>=0.1.0
+mypy>=1.5.0
+black>=23.7.0

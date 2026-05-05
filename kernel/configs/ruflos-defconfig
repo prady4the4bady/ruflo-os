@@ -1,0 +1,79 @@
+# Ruflo OS Kernel Defconfig Overlay
+# ─────────────────────────────────────────────────────────────
+# Applied on top of Debian's default kernel config.
+# Enables Ruflo-specific features for AI-native desktop use.
+# ─────────────────────────────────────────────────────────────
+
+# ── Security Features ────────────────────────────────────────
+CONFIG_SECURITY_LANDLOCK=y
+CONFIG_SECURITY_LANDLOCK_COMPAT=y
+CONFIG_SECCOMP=y
+CONFIG_SECCOMP_FILTER=y
+CONFIG_BPF_SYSCALL=y
+CONFIG_BPF_JIT=y
+CONFIG_BPF_JIT_ALWAYS_ON=y
+CONFIG_BPF_LSM=y
+CONFIG_USER_NS=y
+
+# ── Input Device for ydotool ─────────────────────────────────
+CONFIG_INPUT_UINPUT=y
+
+# ── eBPF for Observability ───────────────────────────────────
+CONFIG_BPF_EVENTS=y
+CONFIG_KPROBE_EVENTS=y
+CONFIG_UPROBE_EVENTS=y
+CONFIG_TRACEPOINTS=y
+CONFIG_FTRACE=y
+CONFIG_FUNCTION_TRACER=y
+
+# ── cgroups v2 (unified hierarchy for sandboxing) ────────────
+CONFIG_CGROUP_V2=y
+CONFIG_CGROUP_FREEZER=y
+CONFIG_CGROUP_PIDS=y
+CONFIG_CGROUP_BPF=y
+CONFIG_MEMCG=y
+CONFIG_MEMCG_SWAP=y
+CONFIG_CPUSETS=y
+
+# ── Scheduler (desktop-optimized) ────────────────────────────
+CONFIG_HZ_1000=y
+CONFIG_PREEMPT=y
+CONFIG_SCHED_AUTOGROUP=y
+CONFIG_NO_HZ_FULL=y
+
+# ── GPU / Wayland Support ────────────────────────────────────
+CONFIG_DRM=y
+CONFIG_DRM_KMS_HELPER=y
+CONFIG_DRM_AMDGPU=m
+CONFIG_DRM_I915=m
+CONFIG_DRM_NOUVEAU=m
+CONFIG_DRM_VIRTIO_GPU=m
+
+# ── Filesystem ───────────────────────────────────────────────
+CONFIG_EXT4_FS=y
+CONFIG_BTRFS_FS=m
+CONFIG_FUSE_FS=m
+CONFIG_OVERLAYFS_FS=m
+CONFIG_TMPFS=y
+CONFIG_TMPFS_POSIX_ACL=y
+
+# ── Networking ───────────────────────────────────────────────
+CONFIG_NETFILTER=y
+CONFIG_NF_TABLES=m
+CONFIG_BRIDGE=m
+CONFIG_VETH=m
+CONFIG_NET_CLS_BPF=m
+
+# ── Sound (PipeWire target) ──────────────────────────────────
+CONFIG_SND=y
+CONFIG_SND_HDA_INTEL=m
+CONFIG_SND_USB_AUDIO=m
+
+# ── Bluetooth ────────────────────────────────────────────────
+CONFIG_BT=m
+CONFIG_BT_HCIBTUSB=m
+CONFIG_BT_HIDP=m
+
+# ── Disable unnecessary features ─────────────────────────────
+# CONFIG_HIBERNATION is not set
+# CONFIG_KEXEC is not set

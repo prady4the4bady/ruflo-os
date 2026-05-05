@@ -1,0 +1,9 @@
+# Kernel Patch Series
+# ─────────────────────────────────────────────────────────────
+# Patches are applied in order. Each line is a patch filename.
+# Use quilt-style patch management.
+# ─────────────────────────────────────────────────────────────
+
+# 01-scheduler-desktop-tuning.patch
+# 02-ebpf-agent-hooks.patch
+# 03-landlock-extended-permissions.patch

@@ -1,0 +1,63 @@
+/* Ruflo OS Design Tokens - GTK4 CSS Custom Properties */
+
+/* Colors */
+@define-color bg #1c1c1e;
+@define-color surface #2c2c2e;
+@define-color surface2 #3a3a3c;
+
+/* Accents */
+@define-color accent #0a84ff;
+@define-color accent_green #30d158;
+@define-color accent_red #ff453a;
+@define-color accent_orange #ff9f0a;
+@define-color accent_purple #bf5af2;
+
+/* Text */
+@define-color text #ffffff;
+@define-color text_secondary rgba(255, 255, 255, 0.6);
+@define-color text_tertiary rgba(255, 255, 255, 0.3);
+
+/* Borders */
+@define-color border rgba(255, 255, 255, 0.1);
+@define-color border_highlight rgba(255, 255, 255, 0.2);
+
+/* Typography */
+@define-color font_system -apple-system, BlinkMacSystemFont, "SF Pro Display", Inter, "Segoe UI", sans-serif;
+@define-color font_mono "SF Mono", Monaco, Menlo, Consolas, monospace;
+
+/* Spacing */
+@define-color space_xs 4px;
+@define-color space_sm 8px;
+@define-color space_md 16px;
+@define-color space_lg 24px;
+@define-color space_xl 32px;
+
+/* Radius */
+@define-color radius_window 10px;
+@define-color radius_button 6px;
+@define-color radius_input 4px;
+@define-color radius_full 9999px;
+
+/* Shadows */
+@define-color shadow_sm 0 2px 8px rgba(0, 0, 0, 0.1);
+@define-color shadow_md 0 4px 16px rgba(0, 0, 0, 0.15);
+@define-color shadow_lg 0 8px 32px rgba(0, 0, 0, 0.2);
+
+/* Blur */
+@define-color blur_vibrancy blur(20px) saturate(180%);
+
+/* Transitions */
+@define-color transition_fast 150ms ease;
+@define-color transition_normal 300ms ease;
+@define-color transition_slow 500ms ease;
+
+/* Motion */
+@define-color duration_fast 120ms;
+@define-color duration_normal 220ms;
+@define-color ease_apple cubic-bezier(0.25, 0.1, 0.25, 1);
+
+/* Z-index layers */
+@define-color z_base 0;
+@define-color z_overlay 100;
+@define-color z_modal 200;
+@define-color z_tooltip 300;

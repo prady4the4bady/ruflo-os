@@ -1,0 +1,26 @@
+agent:
+  max_steps: 50
+  screenshot_interval: 2  # seconds
+  ocr_engine: "easyocr"  # or "tesseract"
+  vision_model: "vision"  # model ID from registry
+
+memory:
+  db_path: "/var/ruflo/memory"
+  max_short_term: 20
+  episodic_max: 100
+
+tools:
+  browser:
+    headless: false
+    timeout: 30000
+  cursor:
+    bezier_smoothness: 0.5
+    click_delay: 0.1
+
+swarm:
+  max_agents: 4
+  consensus_threshold: 0.6
+
+logging:
+  level: "INFO"
+  format: "json"

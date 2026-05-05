@@ -1,0 +1,65 @@
+models:
+  default:
+    name: "Nous-Hermes-3-Llama-3.1-70B"
+    source: huggingface
+    repo_id: "NousResearch/Hermes-3-Llama-3.1-70B-GGUF"
+    filename: "Hermes-3-Llama-3.1-70B.Q4_K_M.gguf"
+    context_length: 131072
+    use_cases: [general, reasoning, planning]
+    vram_required_gb: 16.0
+
+  vision:
+    name: "LLaVA-1.6-34B"
+    source: huggingface
+    repo_id: "liuhaotian/llava-v1.6-34b"
+    use_cases: [screen_understanding, element_detection]
+    vram_required_gb: 14.0
+
+  code:
+    name: "DeepSeek-Coder-V2-16B"
+    source: huggingface
+    repo_id: "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct-GGUF"
+    use_cases: [code_writing, terminal_tasks]
+    vram_required_gb: 12.0
+
+  fast:
+    name: "Phi-3.5-Mini-Instruct"
+    source: huggingface
+    repo_id: "microsoft/Phi-3.5-mini-instruct-gguf"
+    use_cases: [quick_actions, simple_navigation]
+    vram_required_gb: 4.0
+
+  cloud_fallback:
+    name: "nvidia/nemotron-3-super-120b-a12b"
+    source: nvidia_cloud
+    api_base: "https://integrate.api.nvidia.com/v1"
+    use_cases: [all]
+    vram_required_gb: 0.0
+
+  hermes-3-70b-q4:
+    name: "Hermes 3 Llama 70B Q4"
+    repo: "NousResearch/Hermes-3-Llama-3.1-70B-GGUF"
+    file: "Hermes-3-Llama-3.1-70B.Q4_K_M.gguf"
+    use_cases: [general, agent, reasoning]
+    vram_required_gb: 16.0
+
+  qwen-coder-32b-q4:
+    name: "Qwen 2.5 Coder 32B Q4"
+    repo: "Qwen/Qwen2.5-Coder-32B-GGUF"
+    file: "qwen2.5-coder-32b-instruct-q4_k_m.gguf"
+    use_cases: [code, debug, refactor]
+    vram_required_gb: 12.0
+
+  llava-34b-q4:
+    name: "LLaVA 1.6 34B Q4"
+    repo: "cmp-nct/llava-1.6-mistral-34b-gguf"
+    file: "llava-1.6-mistral-34b.Q4_K_M.gguf"
+    use_cases: [vision, screen, ui_understanding]
+    vram_required_gb: 14.0
+
+  deepseek-r1-32b-q4:
+    name: "DeepSeek R1 32B Q4"
+    repo: "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B-GGUF"
+    file: "DeepSeek-R1-Distill-Qwen-32B-Q4_K_M.gguf"
+    use_cases: [reasoning, planning, math]
+    vram_required_gb: 12.0

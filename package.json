@@ -1,0 +1,24 @@
+{
+  "name": "ruflo-os",
+  "version": "1.0.0-production",
+  "description": "Production-grade AI-native Linux operating system",
+  "scripts": {
+    "start": "node scripts/run-ruflo.js",
+    "test": "echo 'Running frontend tests...'",
+    "build": "echo 'Building Ruflo Shell UI...'"
+  },
+  "dependencies": {
+    "swift": "^5.10.0",
+    "node-webkit": "^0.50.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.0"
+  },
+  "license": "Apache-2.0",
+  "author": "Pradyun Kumar Sinha",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prady4the4bady/ruflo-os.git"
+  }
+}

@@ -1,0 +1,63 @@
+#!/bin/bash
+# Ruflo OS Installation Hook for live-build
+# This hook installs the NemOS Python packages and sets up the environment
+
+set -e
+
+echo "→ Installing NemOS components..."
+
+# Copy source code (assuming it's available at /tmp/ruflo-os during build)
+if [ -d /tmp/ruflo-os ]; then
+    cp -r /tmp/ruflo-os /opt/ruflo-source
+    chown -R ruflo:ruflo /opt/ruflo-source
+else
+    echo "Warning: Ruflo OS source not found at /tmp/ruflo-os"
+    echo "Creating minimal structure..."
+    mkdir -p /opt/ruflo-source
+fi
+
+# Install Python dependencies in the venv
+source /opt/ruflo/venv/bin/activate
+
+# Install base dependencies
+pip install --no-cache-dir fastapi uvicorn pydantic structlog httpx sqlalchemy asyncpg redis python-jose passlib
+
+# Install package-specific dependencies if source exists
+if [ -d /opt/ruflo-source/model-gateway ]; then
+    cd /opt/ruflo-source/model-gateway
+    pip install --no-cache-dir -r requirements.txt 2>/dev/null || true
+fi
+
+if [ -d /opt/ruflo-source/control-plane ]; then
+    cd /opt/ruflo-source/control-plane
+    pip install --no-cache-dir -r requirements.txt 2>/dev/null || true
+fi
+
+if [ -d /opt/ruflo-source/ruflo-shell ]; then
+    cd /opt/ruflo-source/ruflo-shell
+    pip install --no-cache-dir -r requirements.txt 2>/dev/null || true
+    # Install GTK dependencies
+    pip install --no-cache-dir PyGObject pycairo 2>/dev/null || true
+fi
+
+# Create .env files for services
+mkdir -p /etc/ruflo
+
+cat > /etc/ruflo/model-gateway.env << 'EOF'
+MODEL_GATEWAY_PORT=8100
+REDIS_URL=redis://localhost:6379/0
+DEFAULT_PROVIDER=ollama
+EOF
+
+cat > /etc/ruflo/control-plane.env << 'EOF'
+CONTROL_PLANE_PORT=9000
+DATABASE_URL=postgresql://ruflo@localhost/ruflo
+REDIS_URL=redis://localhost:6379/0
+EOF
+
+# Enable services
+systemctl enable ruflo-model-gateway.service
+systemctl enable ruflo-control-plane.service
+systemctl enable ruflo-accessibility.service
+
+echo "✓ NemOS installation hook completed."

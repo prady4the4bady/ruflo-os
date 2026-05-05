@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=Plasma/Runner
+X-KDE-PluginInfo-Name=ruflo-spotlight
+X-KDE-PluginInfo-Author=Ruflo OS
+X-KDE-PluginInfo-Version=0.1.0
+X-KDE-PluginInfo-License=AGPL-3.0-or-later
+X-Plasma-API=DBus
+X-Plasma-DBusRunner-Service=com.ruflo.spotlight
+X-Plasma-DBusRunner-Path=/runner
+Name=Ruflo Spotlight
+Comment=Spotlight-style launcher with AI command input
+Icon=search

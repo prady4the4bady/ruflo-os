@@ -1,0 +1,28 @@
+[Unit]
+Description=Ruflo Accessibility Service — GUI automation layer
+After=graphical.target ruflo-control-plane.service
+Wants=graphical.target
+
+[Service]
+Type=exec
+User=ruflo
+Group=ruflo
+WorkingDirectory=/opt/ruflo/accessibility
+ExecStart=/opt/ruflo/venv/bin/uvicorn ruflo_accessibility.api:create_app \
+    --factory \
+    --host 127.0.0.1 \
+    --port 8200
+Environment=DISPLAY=:0
+Environment=WAYLAND_DISPLAY=wayland-0
+Environment=XDG_RUNTIME_DIR=/run/user/1000
+Restart=on-failure
+RestartSec=5
+
+# Less restrictive since it needs GUI access
+NoNewPrivileges=yes
+ProtectSystem=strict
+ReadWritePaths=/var/lib/ruflo /tmp
+PrivateTmp=no
+
+[Install]
+WantedBy=graphical.target

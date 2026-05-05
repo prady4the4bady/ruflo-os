@@ -1,0 +1,12 @@
+{
+    "KPlugin": {
+        "Id": "com.ruflo.os",
+        "Name": "Ruflo OS",
+        "Description": "macOS-inspired KDE Plasma 6 theme for Ruflo OS",
+        "Authors": [{ "Name": "Ruflo OS Contributors" }],
+        "Version": "0.1.0",
+        "License": "AGPL-3.0-or-later",
+        "Website": "https://github.com/prady4the4bady/ruflo-os"
+    },
+    "X-Plasma-MainScript": "defaults"
+}

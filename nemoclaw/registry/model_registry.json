@@ -1,0 +1,56 @@
+{
+  "models": [
+    {
+      "id": "default",
+      "name": "Nous-Hermes-3-Llama-3.1-70B",
+      "type": "local_gguf",
+      "source": "huggingface",
+      "repo_id": "NousResearch/Hermes-3-Llama-3.1-70B-GGUF",
+      "filename": "Hermes-3-Llama-3.1-70B.Q4_K_M.gguf",
+      "context_length": 131072,
+      "use_cases": ["general", "reasoning", "planning"],
+      "loaded": false,
+      "vram_required_gb": 42.0
+    },
+    {
+      "id": "vision",
+      "name": "LLaVA-1.6-34B",
+      "type": "local_safetensors",
+      "source": "huggingface",
+      "repo_id": "liuhaotian/llava-v1.6-34b",
+      "use_cases": ["screen_understanding", "element_detection"],
+      "loaded": false,
+      "vram_required_gb": 68.0
+    },
+    {
+      "id": "code",
+      "name": "DeepSeek-Coder-V2-16B",
+      "type": "local_gguf",
+      "source": "huggingface",
+      "repo_id": "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct-GGUF",
+      "use_cases": ["code_writing", "terminal_tasks"],
+      "loaded": false,
+      "vram_required_gb": 32.0
+    },
+    {
+      "id": "fast",
+      "name": "Phi-3.5-Mini-Instruct",
+      "type": "local_gguf",
+      "source": "huggingface",
+      "repo_id": "microsoft/Phi-3.5-mini-instruct-gguf",
+      "use_cases": ["quick_actions", "simple_navigation"],
+      "loaded": false,
+      "vram_required_gb": 4.0
+    },
+    {
+      "id": "cloud_fallback",
+      "name": "nvidia/nemotron-3-super-120b-a12b",
+      "type": "cloud_nvidia",
+      "source": "nvidia_cloud",
+      "api_base": "https://integrate.api.nvidia.com/v1",
+      "use_cases": ["all"],
+      "loaded": true,
+      "vram_required_gb": 0.0
+    }
+  ]
+}

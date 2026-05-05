@@ -1,0 +1,119 @@
+{
+  "packages": {
+    "nemoclaw": {
+      "name": "nemoclaw",
+      "version": "1.0.0",
+      "type": "system",
+      "dependencies": ["python3", "python3-pip", "libwayland-dev"],
+      "install_cmd": "pip install -e nemoclaw/",
+      "description": "NemoClaw AI Architecture Layer"
+    },
+    "ruflo-agent": {
+      "name": "ruflo-agent",
+      "version": "1.0.0",
+      "type": "system",
+      "dependencies": ["python3", "playwright", "mss", "pyautogui"],
+      "install_cmd": "pip install -e ruflo-agent/",
+      "description": "Ruflo Autonomous Agent"
+    },
+    "ruflo-shell": {
+      "name": "ruflo-shell",
+      "version": "1.0.0",
+      "type": "system",
+      "dependencies": ["libgtk-4-dev", "libadwaita-1-dev", "meson", "ninja-build"],
+      "install_cmd": "cd ruflo-shell/compositor && meson setup build && ninja -C build",
+      "description": "Ruflo Shell Desktop Environment"
+    },
+    "hermes-integration": {
+      "name": "hermes-integration",
+      "version": "1.0.0",
+      "type": "system",
+      "dependencies": ["python3", "python3-pip"],
+      "install_cmd": "pip install -e hermes-integration/",
+      "description": "Hermes Agent Integration"
+    },
+    "hermes-3-70b": {
+      "name": "Hermes 3 Llama 70B Q4",
+      "version": "1.0.0",
+      "type": "model",
+      "repo": "NousResearch/Hermes-3-Llama-3.1-70B-GGUF",
+      "file": "Hermes-3-Llama-3.1-70B.Q4_K_M.gguf",
+      "install_cmd": "python model-hub/puller.py --source hf --id NousResearch/Hermes-3-Llama-3.1-70B-GGUF --file Hermes-3-Llama-3.1-70B.Q4_K_M.gguf",
+      "description": "Default general-purpose model (70B parameters, Q4 quantization)",
+      "vram_required_gb": 16
+    },
+    "qwen-coder-32b": {
+      "name": "Qwen 2.5 Coder 32B Q4",
+      "version": "1.0.0",
+      "type": "model",
+      "repo": "Qwen/Qwen2.5-Coder-32B-GGUF",
+      "file": "qwen2.5-coder-32b-instruct-q4_k_m.gguf",
+      "install_cmd": "python model-hub/puller.py --source hf --id Qwen/Qwen2.5-Coder-32B-GGUF",
+      "description": "Code-specialized model (32B parameters, Q4 quantization)",
+      "use_cases": ["code", "debug", "refactor"],
+      "vram_required_gb": 12
+    },
+    "llava-34b": {
+      "name": "LLaVA 1.6 34B Q4",
+      "version": "1.0.0",
+      "type": "model",
+      "repo": "cmp-nct/llava-1.6-mistral-34b-gguf",
+      "file": "llava-1.6-mistral-34b.Q4_K_M.gguf",
+      "install_cmd": "python model-hub/puller.py --source hf --id cmp-nct/llava-1.6-mistral-34b-gguf",
+      "description": "Vision model for screen understanding (34B parameters, Q4 quantization)",
+      "use_cases": ["vision", "screen", "ui_understanding"],
+      "vram_required_gb": 14
+    },
+    "deepseek-r1-32b": {
+      "name": "DeepSeek R1 32B Q4",
+      "version": "1.0.0",
+      "type": "model",
+      "repo": "deepseek-ai/DeepSeek-R1-Distill-Qwen-32B-GGUF",
+      "file": "DeepSeek-R1-Distill-Qwen-32B-Q4_K_M.gguf",
+      "install_cmd": "python model-hub/puller.py --source hf --id deepseek-ai/DeepSeek-R1-Distill-Qwen-32B-GGUF",
+      "description": "Reasoning model (32B parameters, Q4 quantization)",
+      "use_cases": ["reasoning", "planning", "math"],
+      "vram_required_gb": 12
+    },
+    "mss": {
+      "name": "mss",
+      "version": "9.0",
+      "type": "tool",
+      "dependencies": ["python3"],
+      "install_cmd": "pip install mss",
+      "description": "Screen capture library"
+    },
+    "pyautogui": {
+      "name": "pyautogui",
+      "version": "0.9.54",
+      "type": "tool",
+      "dependencies": ["python3"],
+      "install_cmd": "pip install pyautogui",
+      "description": "GUI automation library"
+    },
+    "ydotool": {
+      "name": "ydotool",
+      "version": "1.0.1",
+      "type": "tool",
+      "dependencies": ["libsystemd-dev"],
+      "install_cmd": "apt-get install -y ydotool",
+      "description": "Virtual input tool for Linux"
+    },
+    "playwright": {
+      "name": "playwright",
+      "version": "1.50.0",
+      "type": "tool",
+      "dependencies": ["python3", "python3-pip"],
+      "install_cmd": "pip install playwright && playwright install chromium",
+      "description": "Browser automation library"
+    },
+    "tesseract": {
+      "name": "tesseract-ocr",
+      "version": "5.3.0",
+      "type": "tool",
+      "dependencies": ["libtesseract-dev"],
+      "install_cmd": "apt-get install -y tesseract-ocr libtesseract-dev",
+      "description": "OCR engine"
+    }
+  }
+}

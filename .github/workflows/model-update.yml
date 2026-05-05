@@ -1,0 +1,18 @@
+name: Model Update Check
+on:
+  schedule:
+    - cron: "0 0 * * 0"  # Weekly on Sunday
+
+jobs:
+  check-models:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for model updates
+        run: |
+          python3 -m model_hub.puller --check-updates
+          if [ $? -eq 1 ]; then
+            echo "Model updates available"
+            # Create issue or notification
+          fi

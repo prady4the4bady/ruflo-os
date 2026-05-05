@@ -1,0 +1,16 @@
+diff --git a/kernel/ai_bridge.c b/kernel/ai_bridge.c
+new file mode 100644
+index 0000000..1234567
+--- /dev/null
++++ b/kernel/ai_bridge.c
+@@ -0,0 +1,10 @@
++// AI Bridge module placeholder
++// Actual implementation in kernel/modules/ai_bridge/
++int ai_bridge_init(void) { return 0; }
++void ai_bridge_exit(void) {}
++
++module_init(ai_bridge_init);
++module_exit(ai_bridge_exit);
++
++MODULE_LICENSE("GPL");
++MODULE_AUTHOR("Pradyun Kumar Sinha");

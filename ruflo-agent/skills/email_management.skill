@@ -1,0 +1,15 @@
+name: email_management
+description: Read, write, and send emails
+trigger_phrases:
+  - "read email"
+  - "send email"
+  - "check inbox"
+steps:
+  - open email client
+  - navigate to inbox
+  - read latest emails
+  - compose and send if needed
+required_tools:
+  - browser_tool
+  - keyboard_control
+  - cursor_control

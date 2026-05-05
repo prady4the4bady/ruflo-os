@@ -1,0 +1,19 @@
+# Ruflo OS — AI Runtime Packages
+# ─────────────────────────────────────────────────────────────
+
+# ── Container Runtime ────────────────────────────────────────
+docker.io
+docker-compose
+
+# ── Python AI Stack ──────────────────────────────────────────
+python3-numpy
+python3-scipy
+
+# ── GPU Support ──────────────────────────────────────────────
+mesa-utils
+mesa-vulkan-drivers
+# nvidia-driver (added conditionally by installer)
+# nvidia-cuda-toolkit (added conditionally by installer)
+
+# ── Monitoring ───────────────────────────────────────────────
+prometheus-node-exporter

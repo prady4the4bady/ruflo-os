@@ -1,0 +1,31 @@
+---
+# Calamares Branding for Ruflo OS
+# ─────────────────────────────────────────────────────────────
+
+componentName: ruflo-os
+
+strings:
+  productName: "Ruflo OS"
+  shortProductName: "Ruflo OS"
+  version: "0.1.0"
+  shortVersion: "0.1"
+  versionedName: "Ruflo OS 0.1.0"
+  shortVersionedName: "Ruflo OS 0.1"
+  bootloaderEntryName: "Ruflo OS"
+  productUrl: "https://github.com/prady4the4bady/ruflo-os"
+  supportUrl: "https://github.com/prady4the4bady/ruflo-os/issues"
+  knownIssuesUrl: "https://github.com/prady4the4bady/ruflo-os/issues"
+  releaseNotesUrl: "https://github.com/prady4the4bady/ruflo-os/releases"
+
+images:
+  productLogo: "ruflo-logo.svg"
+  productIcon: "ruflo-icon.svg"
+  productWelcome: "ruflo-welcome.svg"
+
+slideshow: "show.qml"
+
+style:
+  sidebarBackground: "#1a1b26"
+  sidebarText: "#c0caf5"
+  sidebarTextSelect: "#7aa2f7"
+  sidebarTextHighlight: "#bb9af7"

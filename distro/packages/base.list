@@ -1,0 +1,41 @@
+# Ruflo OS — Base System Packages
+# ─────────────────────────────────────────────────────────────
+
+# ── Core System ──────────────────────────────────────────────
+linux-image-amd64
+systemd
+systemd-sysv
+dbus-broker
+polkitd
+udev
+
+# ── Filesystem ───────────────────────────────────────────────
+btrfs-progs
+e2fsprogs
+dosfstools
+ntfs-3g
+
+# ── Networking ───────────────────────────────────────────────
+network-manager
+iwd
+openssh-client
+curl
+wget
+ca-certificates
+
+# ── Security ─────────────────────────────────────────────────
+apparmor
+apparmor-utils
+gnupg2
+sudo
+libpam-systemd
+
+# ── Python Runtime ───────────────────────────────────────────
+python3
+python3-pip
+python3-venv
+
+# ── Build Essentials (for local model compilation) ───────────
+build-essential
+git
+cmake

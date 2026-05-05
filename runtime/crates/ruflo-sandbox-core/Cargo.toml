@@ -1,0 +1,15 @@
+[package]
+name = "ruflo-sandbox-core"
+version = "0.1.0"
+edition = "2021"
+description = "Performance-critical Linux sandbox wrapper for Ruflo OS"
+
+[dependencies]
+anyhow = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+libc = "0.2"
+nix = { version = "0.27", features = ["process", "fs", "mount", "sched", "user"] }
+clap = { version = "4.4", features = ["derive"] }
+serde = { workspace = true }
+serde_json = { workspace = true }

@@ -1,0 +1,54 @@
+# Ruflo OS — Desktop Environment Packages
+# ─────────────────────────────────────────────────────────────
+
+# ── KDE Plasma 6 ─────────────────────────────────────────────
+plasma-desktop
+plasma-workspace
+plasma-systemmonitor
+plasma-nm
+plasma-pa
+sddm
+sddm-theme-breeze
+kscreen
+kwin-wayland
+kwin-x11
+kde-spectacle
+dolphin
+konsole
+kate
+ark
+gwenview
+okular
+
+# ── Wayland ──────────────────────────────────────────────────
+xwayland
+wl-clipboard
+
+# ── Input Injection ──────────────────────────────────────────
+ydotool
+xdotool
+
+# ── AT-SPI Accessibility ─────────────────────────────────────
+at-spi2-core
+python3-pyatspi
+
+# ── Audio (PipeWire) ─────────────────────────────────────────
+pipewire
+pipewire-pulse
+wireplumber
+
+# ── Fonts ────────────────────────────────────────────────────
+fonts-inter
+fonts-jetbrains-mono
+fonts-noto
+fonts-noto-color-emoji
+
+# ── Browser ──────────────────────────────────────────────────
+firefox-esr
+
+# ── Themes ───────────────────────────────────────────────────
+breeze
+breeze-gtk-theme
+breeze-icon-theme
+breeze-cursor-theme
+kvantum

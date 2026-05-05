@@ -1,0 +1,36 @@
+name: RufloOS Release
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build ISO
+        run: |
+          sudo apt-get update && sudo apt-get install -y live-build xorriso
+          ./scripts/build-all.sh
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Ruflo OS ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload ISO
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          path: /output/ruflo-os-*.iso
+          asset_name: ruflo-os-${{ github.ref }}.iso
+          asset_content_type: application/octet-stream

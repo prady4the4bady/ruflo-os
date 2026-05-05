@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "nemos-desktop"
+version = "1.0.0"
+description = "NemOS (Ruflo OS) - AI-Native Desktop Environment"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+
+dependencies = [
+    "PyGObject>=3.46.0",
+    "pycairo>=1.25.0",
+    "structlog>=23.1.0",
+    "httpx>=0.24.0",
+    "pydantic>=2.0.0",
+    "fastapi>=0.100.0",
+    "uvicorn>=0.23.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "ruff>=0.1.0",
+    "mypy>=1.5.0",
+    "black>=23.7.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["ruflo-shell", "model-gateway", "control-plane", "agents"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+
+[project.scripts]
+nemos-desktop = "ruflo_shell.ui.desktop.main:RufloDesktop.main"
+nemos-gateway = "model_gateway.src.main:app"
+nemos-control = "control_plane.src.main:app"
