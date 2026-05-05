@@ -1,0 +1,40 @@
+name: RufloOS CI
+on: [push, pull_request]
+jobs:
+  test-kernel-modules:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build kernel modules
+        run: cd kernel/modules/ai_bridge && make
+
+  test-nemoclaw:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Nemoclaw tests
+        run: cd nemoclaw && python -m pytest tests/ -v
+
+  test-agent:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Agent tests
+        run: cd ruflo-agent && python -m pytest tests/ -v
+
+  build-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Docker stack
+        run: docker compose -f docker/docker-compose.yml build
+
+  e2e-tests:
+    runs-on: ubuntu-latest
+    services:
+      display:
+        image: ghcr.io/seleniumhq/selenium:standalone-chromium
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run E2E tests
+        run: python -m pytest tests/e2e/ -v --timeout=120

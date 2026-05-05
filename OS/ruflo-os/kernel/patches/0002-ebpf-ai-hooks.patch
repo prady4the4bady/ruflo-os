@@ -1,0 +1,51 @@
+diff --git a/kernel/bpf/ai_hooks.c b/kernel/bpf/ai_hooks.c
+new file mode 100644
+index 0000000..abcdef0
+--- /dev/null
++++ b/kernel/bpf/ai_hooks.c
+@@ -0,0 +1,50 @@
++// eBPF AI Hooks for Ruflo OS
++#include <linux/bpf.h>
++#include <linux/tracepoint.h>
++#include <linux/kprobe.h>
++#include <linux/netdevice.h>
++
++// 1. kprobe on do_sys_openat2
++SEC("kprobe/do_sys_openat2")
++int BPF_KPROBE(kprobe_openat2, const char *filename, struct open_how *how)
++{
++    char fname[256];
++    bpf_probe_read_kernel_str(fname, sizeof(fname), filename);
++    // Export to ring buffer
++    return 0;
++}
++
++// 2. kprobe on sys_execve
++SEC("kprobe/sys_execve")
++int BPF_KPROBE(kprobe_execve, const char *filename, const char *const *argv)
++{
++    return 0;
++}
++
++// 3. tracepoint on net/net_dev_xmit
++SEC("tracepoint/net/net_dev_xmit")
++int TP_PROG(trace_net_xmit, struct sk_buff *skb, int rc)
++{
++    return 0;
++}
++
++// 4. uprobe on libX11.so (placeholder)
++SEC("uprobe/libX11.so/XOpenDisplay")
++int BPF_UPROBE(uprobe_x11_open)
++{
++    return 0;
++}
++
++// 5. XDP program for network policy
++SEC("xdp")
++int xdp_ai_policy(struct xdp_md *ctx)
++{
++    return XDP_PASS;
++}
++
++char _license[] SEC("license") = "GPL";

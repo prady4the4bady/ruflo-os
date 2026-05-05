@@ -1,0 +1,15 @@
+{
+    "KPlugin": {
+        "Id": "com.ruflo.os.ai-activity",
+        "Name": "AI Activity Center",
+        "Description": "Shows Ruflo AI task status, pending approvals, and emergency stop",
+        "Icon": "brain",
+        "Authors": [{ "Name": "Ruflo OS Contributors" }],
+        "Version": "0.1.0",
+        "License": "AGPL-3.0-or-later",
+        "Category": "Utilities"
+    },
+    "X-Plasma-API": "declarativeappletscript",
+    "X-Plasma-MainScript": "ui/main.qml",
+    "X-Plasma-Provides": ["org.kde.plasma.notifications"]
+}

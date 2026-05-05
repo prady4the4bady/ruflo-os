@@ -1,0 +1,1464 @@
+Folder PATH listing for volume Windows-SSD
+Volume serial number is 2E4C-808B
+C:\USERS\PRADY\DESKTOP\CLAUDE\OS\RUFLO-OS
+|   .editorconfig
+|   .gitignore
+|   .pre-commit-config.yaml
+|   AGENTS.md
+|   Cargo.lock
+|   Cargo.toml
+|   Makefile
+|   package.json
+|   pnpm-workspace.yaml
+|   pyproject.toml
+|   README.md
+|   requirements.txt
+|   
++---.devcontainer
+|       devcontainer.json
+|       
++---.github
+|   +---ISSUE_TEMPLATE
+|   |       bug_report.md
+|   |       feature_request.md
+|   |       
+|   \---workflows
+|           ci.yml
+|           model-update.yml
+|           release.yml
+|           
++---accessibility
+|   |   pyproject.toml
+|   |   README.md
+|   |   
+|   +---.pytest_cache
+|   |   |   .gitignore
+|   |   |   CACHEDIR.TAG
+|   |   |   README.md
+|   |   |   
+|   |   \---v
+|   |       \---cache
+|   |               nodeids
+|   |               
+|   +---src
+|   |   \---ruflo_accessibility
+|   |       |   api.py
+|   |       |   operator.py
+|   |       |   __init__.py
+|   |       |   
+|   |       +---atspi
+|   |       |   |   client.py
+|   |       |   |   __init__.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           client.cpython-312.pyc
+|   |       |           __init__.cpython-312.pyc
+|   |       |           
+|   |       +---vision
+|   |       |   |   capture.py
+|   |       |   |   grounding.py
+|   |       |   |   __init__.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           capture.cpython-312.pyc
+|   |       |           grounding.cpython-312.pyc
+|   |       |           __init__.cpython-312.pyc
+|   |       |           
+|   |       +---wayland
+|   |       |   |   injector.py
+|   |       |   |   __init__.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           injector.cpython-312.pyc
+|   |       |           __init__.cpython-312.pyc
+|   |       |           
+|   |       +---x11
+|   |       |   |   injector.py
+|   |       |   |   __init__.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           injector.cpython-312.pyc
+|   |       |           __init__.cpython-312.pyc
+|   |       |           
+|   |       \---__pycache__
+|   |               operator.cpython-312.pyc
+|   |               __init__.cpython-312.pyc
+|   |               
+|   \---tests
+|       |   test_accessibility.py
+|       |   __init__.py
+|       |   
+|       \---__pycache__
+|               test_accessibility.cpython-312-pytest-9.0.1.pyc
+|               __init__.cpython-312.pyc
+|               
++---agents
+|   |   pyproject.toml
+|   |   README.md
+|   |   
+|   +---.pytest_cache
+|   |   |   .gitignore
+|   |   |   CACHEDIR.TAG
+|   |   |   README.md
+|   |   |   
+|   |   \---v
+|   |       \---cache
+|   |               nodeids
+|   |               
+|   +---src
+|   |   \---ruflo_agents
+|   |       |   base.py
+|   |       |   __init__.py
+|   |       |   
+|   |       +---browser
+|   |       |   |   agent.py
+|   |       |   |   __init__.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           agent.cpython-312.pyc
+|   |       |           __init__.cpython-312.pyc
+|   |       |           
+|   |       +---coding
+|   |       |   |   agent.py
+|   |       |   |   __init__.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           agent.cpython-312.pyc
+|   |       |           __init__.cpython-312.pyc
+|   |       |           
+|   |       +---file
+|   |       |   |   agent.py
+|   |       |   |   __init__.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           agent.cpython-312.pyc
+|   |       |           __init__.cpython-312.pyc
+|   |       |           
+|   |       +---gui_operator
+|   |       |   |   agent.py
+|   |       |   |   __init__.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           agent.cpython-312.pyc
+|   |       |           __init__.cpython-312.pyc
+|   |       |           
+|   |       +---hermes_adapter
+|   |       |   |   adapter.py
+|   |       |   |   __init__.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           adapter.cpython-312.pyc
+|   |       |           __init__.cpython-312.pyc
+|   |       |           
+|   |       +---recovery
+|   |       |   |   hooks.py
+|   |       |   |   __init__.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           hooks.cpython-312.pyc
+|   |       |           __init__.cpython-312.pyc
+|   |       |           
+|   |       +---ruflo_adapter
+|   |       |       adapter.py
+|   |       |       __init__.py
+|   |       |       
+|   |       +---verifier
+|   |       |   |   agent.py
+|   |       |   |   __init__.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           agent.cpython-312.pyc
+|   |       |           __init__.cpython-312.pyc
+|   |       |           
+|   |       \---__pycache__
+|   |               base.cpython-312.pyc
+|   |               __init__.cpython-312.pyc
+|   |               
+|   \---tests
+|       |   test_agents.py
+|       |   __init__.py
+|       |   
+|       \---__pycache__
+|               test_agents.cpython-312-pytest-9.0.1.pyc
+|               __init__.cpython-312.pyc
+|               
++---api
+|   |   ruflo-api-server.py
+|   |   __init__.py
+|   |   
+|   +---routes
+|   |       agent.py
+|   |       history.py
+|   |       models.py
+|   |       screen.py
+|   |       tasks.py
+|   |       __init__.py
+|   |       
+|   \---websocket
+|           screen_stream.py
+|           task_stream.py
+|           __init__.py
+|           
++---control-plane
+|   |   docker-compose.yml
+|   |   Dockerfile
+|   |   pyproject.toml
+|   |   README.md
+|   |   
+|   +---.pytest_cache
+|   |   |   .gitignore
+|   |   |   CACHEDIR.TAG
+|   |   |   README.md
+|   |   |   
+|   |   \---v
+|   |       \---cache
+|   |               lastfailed
+|   |               nodeids
+|   |               
+|   +---src
+|   |   \---ruflo_control_plane
+|   |       |   config.py
+|   |       |   main.py
+|   |       |   __init__.py
+|   |       |   
+|   |       +---api
+|   |       |   |   health.py
+|   |       |   |   tasks.py
+|   |       |   |   websocket.py
+|   |       |   |   __init__.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           health.cpython-312.pyc
+|   |       |           tasks.cpython-312.pyc
+|   |       |           websocket.cpython-312.pyc
+|   |       |           __init__.cpython-312.pyc
+|   |       |           
+|   |       +---approval
+|   |       |       broker.py
+|   |       |       __init__.py
+|   |       |       
+|   |       +---audit
+|   |       |   |   service.py
+|   |       |   |   __init__.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           service.cpython-312.pyc
+|   |       |           __init__.cpython-312.pyc
+|   |       |           
+|   |       +---db
+|   |       |       models.py
+|   |       |       __init__.py
+|   |       |       
+|   |       +---orchestrator
+|   |       |   |   budget.py
+|   |       |   |   engine.py
+|   |       |   |   __init__.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           engine.cpython-312.pyc
+|   |       |           __init__.cpython-312.pyc
+|   |       |           
+|   |       +---policy
+|   |       |   |   evaluator.py
+|   |       |   |   rules.py
+|   |       |   |   __init__.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           evaluator.cpython-312.pyc
+|   |       |           rules.cpython-312.pyc
+|   |       |           __init__.cpython-312.pyc
+|   |       |           
+|   |       \---__pycache__
+|   |               config.cpython-312.pyc
+|   |               main.cpython-312.pyc
+|   |               __init__.cpython-312.pyc
+|   |               
+|   \---tests
+|       |   test_control_plane.py
+|       |   __init__.py
+|       |   
+|       \---__pycache__
+|               test_control_plane.cpython-312-pytest-9.0.1.pyc
+|               __init__.cpython-312.pyc
+|               
++---distro
+|   |   README.md
+|   |   
+|   +---apt-channel
+|   +---branding
+|   |   +---grub
+|   |   |       theme.txt
+|   |   |       
+|   |   \---plymouth
+|   |           ruflo-os.plymouth
+|   |           ruflo-os.script
+|   |           
+|   +---calamares
+|   |   |   settings.conf
+|   |   |   
+|   |   +---branding
+|   |   |   \---ruflo-os
+|   |   |           branding.desc
+|   |   |           
+|   |   \---modules
+|   |           services-systemd.conf
+|   |           
+|   +---first-run
+|   |       ruflo-first-run.sh
+|   |       
+|   +---live-build
+|   |       build-iso.sh
+|   |       
+|   +---packages
+|   |       ai-runtime.list
+|   |       base.list
+|   |       desktop.list
+|   |       
+|   \---systemd
+|           ruflo-accessibility.service
+|           ruflo-control-plane.service
+|           ruflo-model-gateway.service
+|           
++---docker
+|       docker-compose.yml
+|       Dockerfile.api
+|       Dockerfile.hermes
+|       Dockerfile.nemoclaw
+|       Dockerfile.ruflo-agent
+|       
++---docs
+|   |   API_REFERENCE.md
+|   |   ARCHITECTURE.md
+|   |   CONTRIBUTING.md
+|   |   integration-status.md
+|   |   KERNEL_MODS.md
+|   |   MODEL_GUIDE.md
+|   |   monorepo-tree.txt
+|   |   NemOS_ARCHITECTURE.md
+|   |   SECURITY.md
+|   |   THREAT_MODEL.md
+|   |   
+|   +---architecture
+|   |       decisions.md
+|   |       implementation-map.md
+|   |       
+|   +---evals
+|   +---runbooks
+|   |       build-and-boot-iso.md
+|   |       local-dev.md
+|   |       
+|   \---threat-model
+|           threat-model.md
+|           
++---hermes-integration
+|       agentnet_bridge.py
+|       audit_logger.py
+|       hermes_client.py
+|       model_switcher.py
+|       skill_factory.py
+|       __init__.py
+|       
++---init-system
+|   |   ruflo-init.c
+|   |   
+|   +---boot
+|   |   |   ruflo-boot.sh
+|   |   |   
+|   |   \---grub-theme
+|   \---service-manager
+|           hermes.service
+|           nemoclaw.service
+|           ruflo-agent.service
+|           ruflo-shell.service
+|           
++---installer
+|   |   partitioning.py
+|   |   ruflo-installer.sh
+|   |   
+|   +---iso-builder
+|   |       build-iso.sh
+|   |       preseed.cfg
+|   |       
+|   \---package-manager
+|           ruflo-pkg-db.json
+|           ruflo-pkg.py
+|           
++---kernel
+|   |   BUILD.md
+|   |   README.md
+|   |   
+|   +---config
+|   |       ruflo_defconfig
+|   |       
+|   +---configs
+|   |       ruflos-defconfig
+|   |       
+|   +---experiments
+|   +---modules
+|   |   +---ai_bridge
+|   |   |       ai_bridge.c
+|   |   |       ai_bridge.h
+|   |   |       Makefile
+|   |   |       
+|   |   \---ruflo_input
+|   |           Makefile
+|   |           ruflo_input.c
+|   |           
+|   \---patches
+|           0001-ai-bridge-module.patch
+|           0002-ebpf-ai-hooks.patch
+|           0003-nemoclaw-syscall-intercept.patch
+|           series
+|           
++---model-gateway
+|   |   .env.example
+|   |   Dockerfile
+|   |   pyproject.toml
+|   |   README.md
+|   |   
+|   +---.pytest_cache
+|   |   |   .gitignore
+|   |   |   CACHEDIR.TAG
+|   |   |   README.md
+|   |   |   
+|   |   \---v
+|   |       \---cache
+|   |               lastfailed
+|   |               nodeids
+|   |               
+|   +---data
+|   |       model_registry.db
+|   |       
+|   +---src
+|   |   \---ruflo_model_gateway
+|   |       |   config.py
+|   |       |   main.py
+|   |       |   metrics.py
+|   |       |   __init__.py
+|   |       |   
+|   |       +---api
+|   |       |   |   health.py
+|   |       |   |   routes.py
+|   |       |   |   __init__.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           health.cpython-312.pyc
+|   |       |           routes.cpython-312.pyc
+|   |       |           __init__.cpython-312.pyc
+|   |       |           
+|   |       +---providers
+|   |       |   |   anthropic.py
+|   |       |   |   base.py
+|   |       |   |   gemini.py
+|   |       |   |   ollama.py
+|   |       |   |   openai_provider.py
+|   |       |   |   sglang.py
+|   |       |   |   vllm.py
+|   |       |   |   __init__.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           anthropic.cpython-312.pyc
+|   |       |           base.cpython-312.pyc
+|   |       |           gemini.cpython-312.pyc
+|   |       |           ollama.cpython-312.pyc
+|   |       |           openai_provider.cpython-312.pyc
+|   |       |           sglang.cpython-312.pyc
+|   |       |           vllm.cpython-312.pyc
+|   |       |           __init__.cpython-312.pyc
+|   |       |           
+|   |       +---registry
+|   |       |   |   store.py
+|   |       |   |   __init__.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           store.cpython-312.pyc
+|   |       |           __init__.cpython-312.pyc
+|   |       |           
+|   |       +---routing
+|   |       |   |   router.py
+|   |       |   |   __init__.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           router.cpython-312.pyc
+|   |       |           __init__.cpython-312.pyc
+|   |       |           
+|   |       \---__pycache__
+|   |               config.cpython-312.pyc
+|   |               main.cpython-312.pyc
+|   |               metrics.cpython-312.pyc
+|   |               __init__.cpython-312.pyc
+|   |               
+|   \---tests
+|       |   test_api.py
+|       |   __init__.py
+|       |   
+|       \---__pycache__
+|               test_api.cpython-312-pytest-9.0.1.pyc
+|               __init__.cpython-312.pyc
+|               
++---model-hub
+|   |   default_models.yaml
+|   |   puller.py
+|   |   quantizer.py
+|   |   
+|   \---model_cache
++---nemoclaw
+|   |   Dockerfile
+|   |   nemoclaw.config.yaml
+|   |   __init__.py
+|   |   
+|   +---blueprint
+|   |       nemoclaw_blueprint.py
+|   |       __init__.py
+|   |       
+|   +---core
+|   |   |   inference_router.py
+|   |   |   model_manager.py
+|   |   |   nemoclaw_daemon.py
+|   |   |   policy_engine.py
+|   |   |   sandbox_manager.py
+|   |   |   __init__.py
+|   |   |   
+|   |   \---__pycache__
+|   |           inference_router.cpython-312.pyc
+|   |           
+|   +---models
+|   |   |   __init__.py
+|   |   |   
+|   |   +---cloud
+|   |   |       huggingface_api.py
+|   |   |       nvidia_cloud.py
+|   |   |       openai_compat.py
+|   |   |       __init__.py
+|   |   |       
+|   |   \---local
+|   |           ollama_backend.py
+|   |           vllm_backend.py
+|   |           __init__.py
+|   |           
+|   +---registry
+|   |       model_registry.json
+|   |       registry_manager.py
+|   |       __init__.py
+|   |       
+|   \---security
+|           filesystem_policy.yaml
+|           network_policy.yaml
+|           syscall_allowlist.txt
+|           __init__.py
+|           
++---observability
+|   |   docker-compose.yml
+|   |   README.md
+|   |   
+|   +---dashboards
+|   |       dashboards.yml
+|   |       grafana-datasource.yml
+|   |       
+|   +---ebpf-probes
+|   |       ruflo_exec_probe.c
+|   |       
+|   +---metrics
+|   |       prometheus.yml
+|   |       
+|   +---session-replay
+|   \---traces
+|           otel-config.yml
+|           
++---ruflo-agent
+|   |   agent.config.yaml
+|   |   __init__.py
+|   |   
+|   +---core
+|   |       agent_runtime.py
+|   |       memory_manager.py
+|   |       rag_engine.py
+|   |       swarm_coordinator.py
+|   |       task_planner.py
+|   |       tool_executor.py
+|   |       __init__.py
+|   |       
+|   +---perception
+|   |       accessibility_reader.py
+|   |       element_detector.py
+|   |       ocr_engine.py
+|   |       screen_parser.py
+|   |       __init__.py
+|   |       
+|   +---plugins
+|   |       hermes_bridge.py
+|   |       __init__.py
+|   |       
+|   +---skills
+|   |       code_execution.skill
+|   |       email_management.skill
+|   |       file_organization.skill
+|   |       README.md
+|   |       web_research.skill
+|   |       __init__.py
+|   |       
+|   +---tools
+|   |       app_launcher.py
+|   |       base_tool.py
+|   |       browser_tool.py
+|   |       cursor_control.py
+|   |       file_tool.py
+|   |       keyboard_control.py
+|   |       screen_capture.py
+|   |       terminal_tool.py
+|   |       vision_tool.py
+|   |       window_manager.py
+|   |       __init__.py
+|   |       
+|   \---workflows
+|           n8n_integration.py
+|           __init__.py
+|           
++---ruflo-shell
+|   |   __init__.py
+|   |   
+|   +---assets
+|   |   +---icons
+|   |   +---sounds
+|   |   \---wallpapers
+|   +---compositor
+|   |       meson.build
+|   |       ruflo-compositor.c
+|   |       ruflo-compositor.h
+|   |       
+|   +---ui
+|   |   +---apps
+|   |   |   +---AgentMonitor
+|   |   |   |       main.py
+|   |   |   |       
+|   |   |   +---ModelManager
+|   |   |   |       main.py
+|   |   |   |       
+|   |   |   +---Settings
+|   |   |   |       main.py
+|   |   |   |       
+|   |   |   \---TaskIntakeApp
+|   |   |           main.py
+|   |   |           
+|   |   +---desktop
+|   |   |       Dock.py
+|   |   |       Dock.swift
+|   |   |       MenuBar.py
+|   |   |       MenuBar.swift
+|   |   |       Notifications.py
+|   |   |       Notifications.swift
+|   |   |       RufloDesktop.py
+|   |   |       RufloDesktop.swift
+|   |   |       Spotlight.py
+|   |   |       Spotlight.swift
+|   |   |       
+|   |   \---themes
+|   |           ruflo-dark.css
+|   |           ruflo-light.css
+|   |           ruflo-tokens.css
+|   |           
+|   \---window-manager
+|           animations.py
+|           spaces.py
+|           tiling.py
+|           
++---runtime
+|   |   pyproject.toml
+|   |   README.md
+|   |   
+|   +---.pytest_cache
+|   |   |   .gitignore
+|   |   |   CACHEDIR.TAG
+|   |   |   README.md
+|   |   |   
+|   |   \---v
+|   |       \---cache
+|   |               lastfailed
+|   |               nodeids
+|   |               
+|   +---crates
+|   |   \---ruflo-sandbox-core
+|   |       |   Cargo.toml
+|   |       |   
+|   |       \---src
+|   |               main.rs
+|   |               
+|   +---src
+|   |   \---ruflo_runtime
+|   |       |   events.py
+|   |       |   __init__.py
+|   |       |   
+|   |       +---brokers
+|   |       |   |   file_broker.py
+|   |       |   |   network_broker.py
+|   |       |   |   secret_broker.py
+|   |       |   |   __init__.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           file_broker.cpython-312.pyc
+|   |       |           network_broker.cpython-312.pyc
+|   |       |           secret_broker.cpython-312.pyc
+|   |       |           __init__.cpython-312.pyc
+|   |       |           
+|   |       +---nemoclaw
+|   |       |   |   bridge.py
+|   |       |   |   __init__.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           bridge.cpython-312.pyc
+|   |       |           __init__.cpython-312.pyc
+|   |       |           
+|   |       +---sandbox
+|   |       |   |   manager.py
+|   |       |   |   policy.py
+|   |       |   |   __init__.py
+|   |       |   |   
+|   |       |   \---__pycache__
+|   |       |           manager.cpython-312.pyc
+|   |       |           policy.cpython-312.pyc
+|   |       |           __init__.cpython-312.pyc
+|   |       |           
+|   |       \---__pycache__
+|   |               __init__.cpython-312.pyc
+|   |               
+|   \---tests
+|       |   test_runtime.py
+|       |   __init__.py
+|       |   
+|       \---__pycache__
+|               test_runtime.cpython-312-pytest-9.0.1.pyc
+|               __init__.cpython-312.pyc
+|               
++---scripts
+|       build-all.sh
+|       run-ruflo.sh
+|       setup-dev.sh
+|       
++---shell
+|   |   install.sh
+|   |   README.md
+|   |   
+|   +---ai-activity
+|   |   |   metadata.json
+|   |   |   
+|   |   \---contents
+|   |       \---ui
+|   |               main.qml
+|   |               
+|   +---branding
+|   +---cli
+|   |   |   pyproject.toml
+|   |   |   README.md
+|   |   |   
+|   |   \---src
+|   |       \---ruflo_cli
+|   |               main.py
+|   |               __init__.py
+|   |               
+|   +---dock
+|   |       panel-config.js
+|   |       
+|   +---launcher
+|   |       ruflo-launcher.desktop
+|   |       ruflo-spotlight.py
+|   |       
+|   +---overview
+|   +---plasma-theme
+|   |       defaults
+|   |       metadata.json
+|   |       
+|   \---top-bar
++---target
+|   |   .rustc_info.json
+|   |   CACHEDIR.TAG
+|   |   
+|   \---debug
+|       |   .cargo-lock
+|       |   
+|       +---.fingerprint
+|       |   +---anstream-b03a751e13397216
+|       |   |       dep-lib-anstream
+|       |   |       invoked.timestamp
+|       |   |       lib-anstream
+|       |   |       lib-anstream.json
+|       |   |       
+|       |   +---anstyle-f3530c74469e4888
+|       |   |       dep-lib-anstyle
+|       |   |       invoked.timestamp
+|       |   |       lib-anstyle
+|       |   |       lib-anstyle.json
+|       |   |       
+|       |   +---anstyle-parse-b7577198bca5236e
+|       |   |       dep-lib-anstyle_parse
+|       |   |       invoked.timestamp
+|       |   |       lib-anstyle_parse
+|       |   |       lib-anstyle_parse.json
+|       |   |       
+|       |   +---anstyle-query-b9d6e121e603ce26
+|       |   |       dep-lib-anstyle_query
+|       |   |       invoked.timestamp
+|       |   |       lib-anstyle_query
+|       |   |       lib-anstyle_query.json
+|       |   |       
+|       |   +---anstyle-wincon-e218fcefa1ae8b80
+|       |   |       dep-lib-anstyle_wincon
+|       |   |       invoked.timestamp
+|       |   |       lib-anstyle_wincon
+|       |   |       lib-anstyle_wincon.json
+|       |   |       
+|       |   +---anyhow-00432e692368ea64
+|       |   |       build-script-build-script-build
+|       |   |       build-script-build-script-build.json
+|       |   |       dep-build-script-build-script-build
+|       |   |       invoked.timestamp
+|       |   |       
+|       |   +---anyhow-505430fcecd1d2e9
+|       |   |       dep-lib-anyhow
+|       |   |       invoked.timestamp
+|       |   |       lib-anyhow
+|       |   |       lib-anyhow.json
+|       |   |       
+|       |   +---anyhow-bca52ec9c173398f
+|       |   |       run-build-script-build-script-build
+|       |   |       run-build-script-build-script-build.json
+|       |   |       
+|       |   +---bitflags-b9b0f79346d11878
+|       |   |       dep-lib-bitflags
+|       |   |       invoked.timestamp
+|       |   |       lib-bitflags
+|       |   |       lib-bitflags.json
+|       |   |       
+|       |   +---cfg-if-26ef73b6fc7ab60c
+|       |   |       dep-lib-cfg_if
+|       |   |       invoked.timestamp
+|       |   |       lib-cfg_if
+|       |   |       lib-cfg_if.json
+|       |   |       
+|       |   +---clap-29e3e4989b61fe1a
+|       |   |       dep-lib-clap
+|       |   |       invoked.timestamp
+|       |   |       lib-clap
+|       |   |       lib-clap.json
+|       |   |       
+|       |   +---clap_builder-ec8d2263117d3986
+|       |   |       dep-lib-clap_builder
+|       |   |       invoked.timestamp
+|       |   |       lib-clap_builder
+|       |   |       lib-clap_builder.json
+|       |   |       
+|       |   +---clap_derive-9d69d5a60216895b
+|       |   |       dep-lib-clap_derive
+|       |   |       invoked.timestamp
+|       |   |       lib-clap_derive
+|       |   |       lib-clap_derive.json
+|       |   |       
+|       |   +---clap_lex-96cbb8967703b3eb
+|       |   |       dep-lib-clap_lex
+|       |   |       invoked.timestamp
+|       |   |       lib-clap_lex
+|       |   |       lib-clap_lex.json
+|       |   |       
+|       |   +---colorchoice-847fe55d4e56df06
+|       |   |       dep-lib-colorchoice
+|       |   |       invoked.timestamp
+|       |   |       lib-colorchoice
+|       |   |       lib-colorchoice.json
+|       |   |       
+|       |   +---heck-e3344ff167d00f10
+|       |   |       dep-lib-heck
+|       |   |       invoked.timestamp
+|       |   |       lib-heck
+|       |   |       lib-heck.json
+|       |   |       
+|       |   +---is_terminal_polyfill-48c41dfc6edb32a8
+|       |   |       dep-lib-is_terminal_polyfill
+|       |   |       invoked.timestamp
+|       |   |       lib-is_terminal_polyfill
+|       |   |       lib-is_terminal_polyfill.json
+|       |   |       
+|       |   +---itoa-2671aa452abccd39
+|       |   |       dep-lib-itoa
+|       |   |       invoked.timestamp
+|       |   |       lib-itoa
+|       |   |       lib-itoa.json
+|       |   |       
+|       |   +---lazy_static-0b7c419a8c32642d
+|       |   |       dep-lib-lazy_static
+|       |   |       invoked.timestamp
+|       |   |       lib-lazy_static
+|       |   |       lib-lazy_static.json
+|       |   |       
+|       |   +---libc-11fdae9dc6877e19
+|       |   |       build-script-build-script-build
+|       |   |       build-script-build-script-build.json
+|       |   |       dep-build-script-build-script-build
+|       |   |       invoked.timestamp
+|       |   |       
+|       |   +---libc-47e43fc594e58c69
+|       |   |       run-build-script-build-script-build
+|       |   |       run-build-script-build-script-build.json
+|       |   |       
+|       |   +---libc-e432098043fa8d79
+|       |   |       dep-lib-libc
+|       |   |       invoked.timestamp
+|       |   |       lib-libc
+|       |   |       lib-libc.json
+|       |   |       
+|       |   +---log-f7a2320e564beb65
+|       |   |       dep-lib-log
+|       |   |       invoked.timestamp
+|       |   |       lib-log
+|       |   |       lib-log.json
+|       |   |       
+|       |   +---matchers-7e566eb641c27fd1
+|       |   |       dep-lib-matchers
+|       |   |       invoked.timestamp
+|       |   |       lib-matchers
+|       |   |       lib-matchers.json
+|       |   |       
+|       |   +---memchr-56793ee0819d7355
+|       |   |       dep-lib-memchr
+|       |   |       invoked.timestamp
+|       |   |       lib-memchr
+|       |   |       lib-memchr.json
+|       |   |       
+|       |   +---nix-b24c443919966d12
+|       |   |       dep-lib-nix
+|       |   |       invoked.timestamp
+|       |   |       lib-nix
+|       |   |       lib-nix.json
+|       |   |       
+|       |   +---nu-ansi-term-3d262800baaf4bfa
+|       |   |       dep-lib-nu_ansi_term
+|       |   |       invoked.timestamp
+|       |   |       lib-nu_ansi_term
+|       |   |       lib-nu_ansi_term.json
+|       |   |       
+|       |   +---once_cell-2565311cad9f2da9
+|       |   |       dep-lib-once_cell
+|       |   |       invoked.timestamp
+|       |   |       lib-once_cell
+|       |   |       lib-once_cell.json
+|       |   |       
+|       |   +---once_cell_polyfill-d7ec020ee616540b
+|       |   |       dep-lib-once_cell_polyfill
+|       |   |       invoked.timestamp
+|       |   |       lib-once_cell_polyfill
+|       |   |       lib-once_cell_polyfill.json
+|       |   |       
+|       |   +---pin-project-lite-f7bef5802155e12f
+|       |   |       dep-lib-pin_project_lite
+|       |   |       invoked.timestamp
+|       |   |       lib-pin_project_lite
+|       |   |       lib-pin_project_lite.json
+|       |   |       
+|       |   +---proc-macro2-1ee1cfdc466af48f
+|       |   |       build-script-build-script-build
+|       |   |       build-script-build-script-build.json
+|       |   |       dep-build-script-build-script-build
+|       |   |       invoked.timestamp
+|       |   |       
+|       |   +---proc-macro2-76c338f680c62d38
+|       |   |       run-build-script-build-script-build
+|       |   |       run-build-script-build-script-build.json
+|       |   |       
+|       |   +---proc-macro2-cfae681f0b41c7e4
+|       |   |       dep-lib-proc_macro2
+|       |   |       invoked.timestamp
+|       |   |       lib-proc_macro2
+|       |   |       lib-proc_macro2.json
+|       |   |       
+|       |   +---quote-49ad6947ff1b3afe
+|       |   |       build-script-build-script-build
+|       |   |       build-script-build-script-build.json
+|       |   |       dep-build-script-build-script-build
+|       |   |       invoked.timestamp
+|       |   |       
+|       |   +---quote-f02f686e54dc067b
+|       |   |       dep-lib-quote
+|       |   |       invoked.timestamp
+|       |   |       lib-quote
+|       |   |       lib-quote.json
+|       |   |       
+|       |   +---quote-f964a9ade41adae9
+|       |   |       run-build-script-build-script-build
+|       |   |       run-build-script-build-script-build.json
+|       |   |       
+|       |   +---regex-automata-5857cbcb6ccb780a
+|       |   |       dep-lib-regex_automata
+|       |   |       invoked.timestamp
+|       |   |       lib-regex_automata
+|       |   |       lib-regex_automata.json
+|       |   |       
+|       |   +---regex-syntax-665dffe64d3e6cdd
+|       |   |       dep-lib-regex_syntax
+|       |   |       invoked.timestamp
+|       |   |       lib-regex_syntax
+|       |   |       lib-regex_syntax.json
+|       |   |       
+|       |   +---ruflo-sandbox-core-620f93d8b9632d74
+|       |   |       invoked.timestamp
+|       |   |       output-bin-ruflo-sandbox-core
+|       |   |       
+|       |   +---serde-1f3bc319f06ce027
+|       |   |       build-script-build-script-build
+|       |   |       build-script-build-script-build.json
+|       |   |       dep-build-script-build-script-build
+|       |   |       invoked.timestamp
+|       |   |       
+|       |   +---serde-2cf60d82e7df1762
+|       |   |       dep-lib-serde
+|       |   |       invoked.timestamp
+|       |   |       lib-serde
+|       |   |       lib-serde.json
+|       |   |       
+|       |   +---serde-58ff6ab5bf28e202
+|       |   |       run-build-script-build-script-build
+|       |   |       run-build-script-build-script-build.json
+|       |   |       
+|       |   +---serde_core-82ea98f9bf3fdb31
+|       |   |       build-script-build-script-build
+|       |   |       build-script-build-script-build.json
+|       |   |       dep-build-script-build-script-build
+|       |   |       invoked.timestamp
+|       |   |       
+|       |   +---serde_core-ccc281f851e57bb7
+|       |   |       run-build-script-build-script-build
+|       |   |       run-build-script-build-script-build.json
+|       |   |       
+|       |   +---serde_core-cf81c84a3550377d
+|       |   |       dep-lib-serde_core
+|       |   |       invoked.timestamp
+|       |   |       lib-serde_core
+|       |   |       lib-serde_core.json
+|       |   |       
+|       |   +---serde_derive-74b9607fb11144ad
+|       |   |       dep-lib-serde_derive
+|       |   |       invoked.timestamp
+|       |   |       lib-serde_derive
+|       |   |       lib-serde_derive.json
+|       |   |       
+|       |   +---serde_json-45eaf3cf89af7e1e
+|       |   |       dep-lib-serde_json
+|       |   |       invoked.timestamp
+|       |   |       lib-serde_json
+|       |   |       lib-serde_json.json
+|       |   |       
+|       |   +---serde_json-dfc5f61546d4b26d
+|       |   |       run-build-script-build-script-build
+|       |   |       run-build-script-build-script-build.json
+|       |   |       
+|       |   +---serde_json-ef7ad661a6eb0121
+|       |   |       build-script-build-script-build
+|       |   |       build-script-build-script-build.json
+|       |   |       dep-build-script-build-script-build
+|       |   |       invoked.timestamp
+|       |   |       
+|       |   +---sharded-slab-ac0ceded83064dcb
+|       |   |       dep-lib-sharded_slab
+|       |   |       invoked.timestamp
+|       |   |       lib-sharded_slab
+|       |   |       lib-sharded_slab.json
+|       |   |       
+|       |   +---smallvec-477c36b1c41d432f
+|       |   |       dep-lib-smallvec
+|       |   |       invoked.timestamp
+|       |   |       lib-smallvec
+|       |   |       lib-smallvec.json
+|       |   |       
+|       |   +---strsim-571a1c674e5f96d0
+|       |   |       dep-lib-strsim
+|       |   |       invoked.timestamp
+|       |   |       lib-strsim
+|       |   |       lib-strsim.json
+|       |   |       
+|       |   +---syn-fea3a3d1ee8855be
+|       |   |       dep-lib-syn
+|       |   |       invoked.timestamp
+|       |   |       lib-syn
+|       |   |       lib-syn.json
+|       |   |       
+|       |   +---thread_local-2b4c8c024d280447
+|       |   |       dep-lib-thread_local
+|       |   |       invoked.timestamp
+|       |   |       lib-thread_local
+|       |   |       lib-thread_local.json
+|       |   |       
+|       |   +---tracing-913a4f89f93d761e
+|       |   |       dep-lib-tracing
+|       |   |       invoked.timestamp
+|       |   |       lib-tracing
+|       |   |       lib-tracing.json
+|       |   |       
+|       |   +---tracing-attributes-d08317d70bb7cf67
+|       |   |       dep-lib-tracing_attributes
+|       |   |       invoked.timestamp
+|       |   |       lib-tracing_attributes
+|       |   |       lib-tracing_attributes.json
+|       |   |       
+|       |   +---tracing-core-8e91ac65b2988746
+|       |   |       dep-lib-tracing_core
+|       |   |       invoked.timestamp
+|       |   |       lib-tracing_core
+|       |   |       lib-tracing_core.json
+|       |   |       
+|       |   +---tracing-log-2ca5534e3aeed3da
+|       |   |       dep-lib-tracing_log
+|       |   |       invoked.timestamp
+|       |   |       lib-tracing_log
+|       |   |       lib-tracing_log.json
+|       |   |       
+|       |   +---tracing-serde-739b348e772e4bbe
+|       |   |       dep-lib-tracing_serde
+|       |   |       invoked.timestamp
+|       |   |       lib-tracing_serde
+|       |   |       lib-tracing_serde.json
+|       |   |       
+|       |   +---tracing-subscriber-b5d9fde01b5e43f1
+|       |   |       dep-lib-tracing_subscriber
+|       |   |       invoked.timestamp
+|       |   |       lib-tracing_subscriber
+|       |   |       lib-tracing_subscriber.json
+|       |   |       
+|       |   +---unicode-ident-f88ee447fb0a070c
+|       |   |       dep-lib-unicode_ident
+|       |   |       invoked.timestamp
+|       |   |       lib-unicode_ident
+|       |   |       lib-unicode_ident.json
+|       |   |       
+|       |   +---utf8parse-0ffb4e421f1f174f
+|       |   |       dep-lib-utf8parse
+|       |   |       invoked.timestamp
+|       |   |       lib-utf8parse
+|       |   |       lib-utf8parse.json
+|       |   |       
+|       |   +---windows-link-d2f160bb0547be5e
+|       |   |       dep-lib-windows_link
+|       |   |       invoked.timestamp
+|       |   |       lib-windows_link
+|       |   |       lib-windows_link.json
+|       |   |       
+|       |   +---windows-sys-ce79516de60c75c7
+|       |   |       dep-lib-windows_sys
+|       |   |       invoked.timestamp
+|       |   |       lib-windows_sys
+|       |   |       lib-windows_sys.json
+|       |   |       
+|       |   +---zmij-194831206729353d
+|       |   |       dep-lib-zmij
+|       |   |       invoked.timestamp
+|       |   |       lib-zmij
+|       |   |       lib-zmij.json
+|       |   |       
+|       |   +---zmij-24c1cd7e16561251
+|       |   |       build-script-build-script-build
+|       |   |       build-script-build-script-build.json
+|       |   |       dep-build-script-build-script-build
+|       |   |       invoked.timestamp
+|       |   |       
+|       |   \---zmij-375cc969dfe26a29
+|       |           run-build-script-build-script-build
+|       |           run-build-script-build-script-build.json
+|       |           
+|       +---build
+|       |   +---anyhow-00432e692368ea64
+|       |   |       build-script-build.exe
+|       |   |       build_script_build-00432e692368ea64.d
+|       |   |       build_script_build-00432e692368ea64.exe
+|       |   |       build_script_build-00432e692368ea64.pdb
+|       |   |       build_script_build.pdb
+|       |   |       
+|       |   +---anyhow-bca52ec9c173398f
+|       |   |   |   invoked.timestamp
+|       |   |   |   output
+|       |   |   |   root-output
+|       |   |   |   stderr
+|       |   |   |   
+|       |   |   \---out
+|       |   +---libc-11fdae9dc6877e19
+|       |   |       build-script-build.exe
+|       |   |       build_script_build-11fdae9dc6877e19.d
+|       |   |       build_script_build-11fdae9dc6877e19.exe
+|       |   |       build_script_build-11fdae9dc6877e19.pdb
+|       |   |       build_script_build.pdb
+|       |   |       
+|       |   +---libc-47e43fc594e58c69
+|       |   |   |   invoked.timestamp
+|       |   |   |   output
+|       |   |   |   root-output
+|       |   |   |   stderr
+|       |   |   |   
+|       |   |   \---out
+|       |   +---proc-macro2-1ee1cfdc466af48f
+|       |   |       build-script-build.exe
+|       |   |       build_script_build-1ee1cfdc466af48f.d
+|       |   |       build_script_build-1ee1cfdc466af48f.exe
+|       |   |       build_script_build-1ee1cfdc466af48f.pdb
+|       |   |       build_script_build.pdb
+|       |   |       
+|       |   +---proc-macro2-76c338f680c62d38
+|       |   |   |   invoked.timestamp
+|       |   |   |   output
+|       |   |   |   root-output
+|       |   |   |   stderr
+|       |   |   |   
+|       |   |   \---out
+|       |   +---quote-49ad6947ff1b3afe
+|       |   |       build-script-build.exe
+|       |   |       build_script_build-49ad6947ff1b3afe.d
+|       |   |       build_script_build-49ad6947ff1b3afe.exe
+|       |   |       build_script_build-49ad6947ff1b3afe.pdb
+|       |   |       build_script_build.pdb
+|       |   |       
+|       |   +---quote-f964a9ade41adae9
+|       |   |   |   invoked.timestamp
+|       |   |   |   output
+|       |   |   |   root-output
+|       |   |   |   stderr
+|       |   |   |   
+|       |   |   \---out
+|       |   +---serde-1f3bc319f06ce027
+|       |   |       build-script-build.exe
+|       |   |       build_script_build-1f3bc319f06ce027.d
+|       |   |       build_script_build-1f3bc319f06ce027.exe
+|       |   |       build_script_build-1f3bc319f06ce027.pdb
+|       |   |       build_script_build.pdb
+|       |   |       
+|       |   +---serde-58ff6ab5bf28e202
+|       |   |   |   invoked.timestamp
+|       |   |   |   output
+|       |   |   |   root-output
+|       |   |   |   stderr
+|       |   |   |   
+|       |   |   \---out
+|       |   |           private.rs
+|       |   |           
+|       |   +---serde_core-82ea98f9bf3fdb31
+|       |   |       build-script-build.exe
+|       |   |       build_script_build-82ea98f9bf3fdb31.d
+|       |   |       build_script_build-82ea98f9bf3fdb31.exe
+|       |   |       build_script_build-82ea98f9bf3fdb31.pdb
+|       |   |       build_script_build.pdb
+|       |   |       
+|       |   +---serde_core-ccc281f851e57bb7
+|       |   |   |   invoked.timestamp
+|       |   |   |   output
+|       |   |   |   root-output
+|       |   |   |   stderr
+|       |   |   |   
+|       |   |   \---out
+|       |   |           private.rs
+|       |   |           
+|       |   +---serde_json-dfc5f61546d4b26d
+|       |   |   |   invoked.timestamp
+|       |   |   |   output
+|       |   |   |   root-output
+|       |   |   |   stderr
+|       |   |   |   
+|       |   |   \---out
+|       |   +---serde_json-ef7ad661a6eb0121
+|       |   |       build-script-build.exe
+|       |   |       build_script_build-ef7ad661a6eb0121.d
+|       |   |       build_script_build-ef7ad661a6eb0121.exe
+|       |   |       build_script_build-ef7ad661a6eb0121.pdb
+|       |   |       build_script_build.pdb
+|       |   |       
+|       |   +---zmij-24c1cd7e16561251
+|       |   |       build-script-build.exe
+|       |   |       build_script_build-24c1cd7e16561251.d
+|       |   |       build_script_build-24c1cd7e16561251.exe
+|       |   |       build_script_build-24c1cd7e16561251.pdb
+|       |   |       build_script_build.pdb
+|       |   |       
+|       |   \---zmij-375cc969dfe26a29
+|       |       |   invoked.timestamp
+|       |       |   output
+|       |       |   root-output
+|       |       |   stderr
+|       |       |   
+|       |       \---out
+|       +---deps
+|       |       anstream-b03a751e13397216.d
+|       |       anstyle-f3530c74469e4888.d
+|       |       anstyle_parse-b7577198bca5236e.d
+|       |       anstyle_query-b9d6e121e603ce26.d
+|       |       anstyle_wincon-e218fcefa1ae8b80.d
+|       |       anyhow-505430fcecd1d2e9.d
+|       |       bitflags-b9b0f79346d11878.d
+|       |       cfg_if-26ef73b6fc7ab60c.d
+|       |       clap-29e3e4989b61fe1a.d
+|       |       clap_builder-ec8d2263117d3986.d
+|       |       clap_derive-9d69d5a60216895b.d
+|       |       clap_derive-9d69d5a60216895b.dll
+|       |       clap_derive-9d69d5a60216895b.dll.exp
+|       |       clap_derive-9d69d5a60216895b.dll.lib
+|       |       clap_derive-9d69d5a60216895b.pdb
+|       |       clap_lex-96cbb8967703b3eb.d
+|       |       colorchoice-847fe55d4e56df06.d
+|       |       heck-e3344ff167d00f10.d
+|       |       is_terminal_polyfill-48c41dfc6edb32a8.d
+|       |       itoa-2671aa452abccd39.d
+|       |       lazy_static-0b7c419a8c32642d.d
+|       |       libanstream-b03a751e13397216.rlib
+|       |       libanstream-b03a751e13397216.rmeta
+|       |       libanstyle-f3530c74469e4888.rlib
+|       |       libanstyle-f3530c74469e4888.rmeta
+|       |       libanstyle_parse-b7577198bca5236e.rlib
+|       |       libanstyle_parse-b7577198bca5236e.rmeta
+|       |       libanstyle_query-b9d6e121e603ce26.rlib
+|       |       libanstyle_query-b9d6e121e603ce26.rmeta
+|       |       libanstyle_wincon-e218fcefa1ae8b80.rlib
+|       |       libanstyle_wincon-e218fcefa1ae8b80.rmeta
+|       |       libanyhow-505430fcecd1d2e9.rlib
+|       |       libanyhow-505430fcecd1d2e9.rmeta
+|       |       libbitflags-b9b0f79346d11878.rlib
+|       |       libbitflags-b9b0f79346d11878.rmeta
+|       |       libc-e432098043fa8d79.d
+|       |       libcfg_if-26ef73b6fc7ab60c.rlib
+|       |       libcfg_if-26ef73b6fc7ab60c.rmeta
+|       |       libclap-29e3e4989b61fe1a.rlib
+|       |       libclap-29e3e4989b61fe1a.rmeta
+|       |       libclap_builder-ec8d2263117d3986.rlib
+|       |       libclap_builder-ec8d2263117d3986.rmeta
+|       |       libclap_lex-96cbb8967703b3eb.rlib
+|       |       libclap_lex-96cbb8967703b3eb.rmeta
+|       |       libcolorchoice-847fe55d4e56df06.rlib
+|       |       libcolorchoice-847fe55d4e56df06.rmeta
+|       |       libheck-e3344ff167d00f10.rlib
+|       |       libheck-e3344ff167d00f10.rmeta
+|       |       libis_terminal_polyfill-48c41dfc6edb32a8.rlib
+|       |       libis_terminal_polyfill-48c41dfc6edb32a8.rmeta
+|       |       libitoa-2671aa452abccd39.rlib
+|       |       libitoa-2671aa452abccd39.rmeta
+|       |       liblazy_static-0b7c419a8c32642d.rlib
+|       |       liblazy_static-0b7c419a8c32642d.rmeta
+|       |       liblibc-e432098043fa8d79.rlib
+|       |       liblibc-e432098043fa8d79.rmeta
+|       |       liblog-f7a2320e564beb65.rlib
+|       |       liblog-f7a2320e564beb65.rmeta
+|       |       libmatchers-7e566eb641c27fd1.rlib
+|       |       libmatchers-7e566eb641c27fd1.rmeta
+|       |       libmemchr-56793ee0819d7355.rlib
+|       |       libmemchr-56793ee0819d7355.rmeta
+|       |       libnix-b24c443919966d12.rlib
+|       |       libnix-b24c443919966d12.rmeta
+|       |       libnu_ansi_term-3d262800baaf4bfa.rlib
+|       |       libnu_ansi_term-3d262800baaf4bfa.rmeta
+|       |       libonce_cell-2565311cad9f2da9.rlib
+|       |       libonce_cell-2565311cad9f2da9.rmeta
+|       |       libonce_cell_polyfill-d7ec020ee616540b.rlib
+|       |       libonce_cell_polyfill-d7ec020ee616540b.rmeta
+|       |       libpin_project_lite-f7bef5802155e12f.rlib
+|       |       libpin_project_lite-f7bef5802155e12f.rmeta
+|       |       libproc_macro2-cfae681f0b41c7e4.rlib
+|       |       libproc_macro2-cfae681f0b41c7e4.rmeta
+|       |       libquote-f02f686e54dc067b.rlib
+|       |       libquote-f02f686e54dc067b.rmeta
+|       |       libregex_automata-5857cbcb6ccb780a.rlib
+|       |       libregex_automata-5857cbcb6ccb780a.rmeta
+|       |       libregex_syntax-665dffe64d3e6cdd.rlib
+|       |       libregex_syntax-665dffe64d3e6cdd.rmeta
+|       |       libserde-2cf60d82e7df1762.rlib
+|       |       libserde-2cf60d82e7df1762.rmeta
+|       |       libserde_core-cf81c84a3550377d.rlib
+|       |       libserde_core-cf81c84a3550377d.rmeta
+|       |       libserde_json-45eaf3cf89af7e1e.rlib
+|       |       libserde_json-45eaf3cf89af7e1e.rmeta
+|       |       libsharded_slab-ac0ceded83064dcb.rlib
+|       |       libsharded_slab-ac0ceded83064dcb.rmeta
+|       |       libsmallvec-477c36b1c41d432f.rlib
+|       |       libsmallvec-477c36b1c41d432f.rmeta
+|       |       libstrsim-571a1c674e5f96d0.rlib
+|       |       libstrsim-571a1c674e5f96d0.rmeta
+|       |       libsyn-fea3a3d1ee8855be.rlib
+|       |       libsyn-fea3a3d1ee8855be.rmeta
+|       |       libthread_local-2b4c8c024d280447.rlib
+|       |       libthread_local-2b4c8c024d280447.rmeta
+|       |       libtracing-913a4f89f93d761e.rlib
+|       |       libtracing-913a4f89f93d761e.rmeta
+|       |       libtracing_core-8e91ac65b2988746.rlib
+|       |       libtracing_core-8e91ac65b2988746.rmeta
+|       |       libtracing_log-2ca5534e3aeed3da.rlib
+|       |       libtracing_log-2ca5534e3aeed3da.rmeta
+|       |       libtracing_serde-739b348e772e4bbe.rlib
+|       |       libtracing_serde-739b348e772e4bbe.rmeta
+|       |       libtracing_subscriber-b5d9fde01b5e43f1.rlib
+|       |       libtracing_subscriber-b5d9fde01b5e43f1.rmeta
+|       |       libunicode_ident-f88ee447fb0a070c.rlib
+|       |       libunicode_ident-f88ee447fb0a070c.rmeta
+|       |       libutf8parse-0ffb4e421f1f174f.rlib
+|       |       libutf8parse-0ffb4e421f1f174f.rmeta
+|       |       libwindows_link-d2f160bb0547be5e.rlib
+|       |       libwindows_link-d2f160bb0547be5e.rmeta
+|       |       libwindows_sys-ce79516de60c75c7.rlib
+|       |       libwindows_sys-ce79516de60c75c7.rmeta
+|       |       libzmij-194831206729353d.rlib
+|       |       libzmij-194831206729353d.rmeta
+|       |       log-f7a2320e564beb65.d
+|       |       matchers-7e566eb641c27fd1.d
+|       |       memchr-56793ee0819d7355.d
+|       |       nix-b24c443919966d12.d
+|       |       nu_ansi_term-3d262800baaf4bfa.d
+|       |       once_cell-2565311cad9f2da9.d
+|       |       once_cell_polyfill-d7ec020ee616540b.d
+|       |       pin_project_lite-f7bef5802155e12f.d
+|       |       proc_macro2-cfae681f0b41c7e4.d
+|       |       quote-f02f686e54dc067b.d
+|       |       regex_automata-5857cbcb6ccb780a.d
+|       |       regex_syntax-665dffe64d3e6cdd.d
+|       |       ruflo_sandbox_core.d
+|       |       serde-2cf60d82e7df1762.d
+|       |       serde_core-cf81c84a3550377d.d
+|       |       serde_derive-74b9607fb11144ad.d
+|       |       serde_derive-74b9607fb11144ad.dll
+|       |       serde_derive-74b9607fb11144ad.dll.exp
+|       |       serde_derive-74b9607fb11144ad.dll.lib
+|       |       serde_derive-74b9607fb11144ad.pdb
+|       |       serde_json-45eaf3cf89af7e1e.d
+|       |       sharded_slab-ac0ceded83064dcb.d
+|       |       smallvec-477c36b1c41d432f.d
+|       |       strsim-571a1c674e5f96d0.d
+|       |       syn-fea3a3d1ee8855be.d
+|       |       thread_local-2b4c8c024d280447.d
+|       |       tracing-913a4f89f93d761e.d
+|       |       tracing_attributes-d08317d70bb7cf67.d
+|       |       tracing_attributes-d08317d70bb7cf67.dll
+|       |       tracing_attributes-d08317d70bb7cf67.dll.exp
+|       |       tracing_attributes-d08317d70bb7cf67.dll.lib
+|       |       tracing_attributes-d08317d70bb7cf67.pdb
+|       |       tracing_core-8e91ac65b2988746.d
+|       |       tracing_log-2ca5534e3aeed3da.d
+|       |       tracing_serde-739b348e772e4bbe.d
+|       |       tracing_subscriber-b5d9fde01b5e43f1.d
+|       |       unicode_ident-f88ee447fb0a070c.d
+|       |       utf8parse-0ffb4e421f1f174f.d
+|       |       windows_link-d2f160bb0547be5e.d
+|       |       windows_sys-ce79516de60c75c7.d
+|       |       zmij-194831206729353d.d
+|       |       
+|       +---examples
+|       \---incremental
+|           \---ruflo_sandbox_core-38hju7uoscy7r
+|               |   s-hi5es2l09v-1oc8z49.lock
+|               |   
+|               \---s-hi5es2l09v-1oc8z49-working
+|                       dep-graph.part.bin
+|                       
+\---tests
+    +---benchmarks
+    |       __init__.py
+    |       
+    +---e2e
+    |       test_screen_control.py
+    |       test_task_execution.py
+    |       __init__.py
+    |       
+    +---integration
+    |       test_api.py
+    |       __init__.py
+    |       
+    \---unit
+            test_nemoclaw.py
+            test_ruflo_agent.py
+            __init__.py
+            

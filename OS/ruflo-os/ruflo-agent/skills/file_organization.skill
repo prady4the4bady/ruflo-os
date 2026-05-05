@@ -1,0 +1,14 @@
+name: file_organization
+description: Organize files into folders
+trigger_phrases:
+  - "organize files"
+  - "sort files"
+  - "clean up directory"
+steps:
+  - scan target directory
+  - categorize files by type
+  - create folders
+  - move files
+required_tools:
+  - file_tool
+  - terminal_tool

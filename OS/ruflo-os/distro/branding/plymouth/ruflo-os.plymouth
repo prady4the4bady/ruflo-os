@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Ruflo OS
+Description=Minimalist macOS-style boot splash for Ruflo OS
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/ruflo-os
+ScriptFile=/usr/share/plymouth/themes/ruflo-os/ruflo-os.script

@@ -1,0 +1,37 @@
+diff --git a/kernel/nemoclaw_syscall.c b/kernel/nemoclaw_syscall.c
+new file mode 100644
+index 0000000..fedcba0
+--- /dev/null
++++ b/kernel/nemoclaw_syscall.c
+@@ -0,0 +1,30 @@
++// NemoClaw Syscall Intercept for Ruflo OS
++#include <linux/syscalls.h>
++#include <linux/audit.h>
++
++asmlinkage long nemoclaw_syscall_intercept(long nr, struct pt_regs *regs)
++{
++    // Log syscall for agent context (not block)
++    char comm[16];
++    get_task_comm(comm, current);
++    pr_debug("nemoclaw: syscall %ld by %s\n", nr, comm);
++    return nr;
++}
++
++// Hooked via eBPF kprobe
++// Loaded by nemoclaw daemon
++
++static int __init nemoclaw_syscall_init(void)
++{
++    pr_info("nemoclaw: syscall intercept initialized\n");
++    return 0;
++}
++
++static void __exit nemoclaw_syscall_exit(void)
++{
++    pr_info("nemoclaw: syscall intercept unloaded\n");
++}
++
++module_init(nemoclaw_syscall_init);
++module_exit(nemoclaw_syscall_exit);
++
++MODULE_LICENSE("GPL");

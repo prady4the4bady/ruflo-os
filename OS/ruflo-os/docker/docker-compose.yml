@@ -1,0 +1,80 @@
+version: "3.9"
+services:
+  nemoclaw:
+    build: ./docker/Dockerfile.nemoclaw
+    container_name: ruflo-nemoclaw
+    privileged: false
+    security_opt: ["no-new-privileges:true"]
+    cap_add: ["NET_ADMIN"]
+    volumes:
+      - /run/nemoclaw.sock:/run/nemoclaw.sock
+      - /opt/ruflo/models:/opt/ruflo/models
+      - ./nemoclaw/nemoclaw.config.yaml:/app/config.yaml
+    environment:
+      - NVIDIA_API_KEY=${NVIDIA_API_KEY}
+      - NEMOCLAW_MODE=${NEMOCLAW_MODE:-local}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+
+  ruflo-agent:
+    build: ./docker/Dockerfile.ruflo-agent
+    container_name: ruflo-agent
+    depends_on: [nemoclaw]
+    volumes:
+      - /run/nemoclaw.sock:/run/nemoclaw.sock
+      - /var/ruflo/memory:/var/ruflo/memory
+      - /dev/ruflo_input:/dev/ruflo_input
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /run/user/1000/wayland-0:/run/user/1000/wayland-0
+    environment:
+      - DISPLAY=${DISPLAY:-:0}
+      - WAYLAND_DISPLAY=${WAYLAND_DISPLAY:-wayland-0}
+      - XDG_RUNTIME_DIR=/run/user/1000
+    restart: unless-stopped
+
+  hermes:
+    build: ./docker/Dockerfile.hermes
+    container_name: ruflo-hermes
+    depends_on: [nemoclaw]
+    volumes:
+      - /run/nemoclaw.sock:/run/nemoclaw.sock
+      - ./ruflo-agent/skills:/app/skills
+      - ./hermes-integration:/app/hermes-integration
+    restart: unless-stopped
+
+  api:
+    build: ./docker/Dockerfile.api
+    container_name: ruflo-api
+    depends_on: [ruflo-agent, hermes, nemoclaw]
+    ports:
+      - "7474:7474"
+    volumes:
+      - /run/nemoclaw.sock:/run/nemoclaw.sock
+    restart: unless-stopped
+
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: ruflo-chromadb
+    volumes:
+      - /var/ruflo/memory:/chroma/chroma
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ruflo-ollama
+    volumes:
+      - /opt/ruflo/models/ollama:/root/.ollama
+    ports:
+      - "11434:11434"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    restart: unless-stopped

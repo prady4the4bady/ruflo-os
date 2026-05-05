@@ -1,0 +1,36 @@
+rules:
+  - id: allow-sandbox
+    action: allow
+    resource: filesystem
+    pattern: "/sandbox"
+    description: Allow sandbox directory access
+
+  - id: allow-tmp
+    action: allow
+    resource: filesystem
+    pattern: "/tmp"
+    description: Allow tmp directory access
+
+  - id: allow-home
+    action: ask
+    resource: filesystem
+    pattern: "/home"
+    description: Ask user for home directory access
+
+  - id: deny-root
+    action: deny
+    resource: filesystem
+    pattern: "/etc"
+    description: Deny etc access
+
+  - id: deny-sys
+    action: deny
+    resource: filesystem
+    pattern: "/sys"
+    description: Deny sys access
+
+  - id: deny-proc
+    action: deny
+    resource: filesystem
+    pattern: "/proc"
+    description: Deny proc access

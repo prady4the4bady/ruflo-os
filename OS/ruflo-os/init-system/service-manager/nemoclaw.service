@@ -1,0 +1,17 @@
+[Unit]
+Description=Nemoclaw AI Architecture Layer
+After=local-fs.target
+Before=ruflo-agent.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /app/nemoclaw/core/nemoclaw_daemon.py
+Restart=on-failure
+RestartSec=5s
+User=ruflo
+Group=ruflo
+RuntimeDirectory=nemoclaw
+RuntimeDirectoryMode=0755
+
+[Install]
+WantedBy=multi-user.target

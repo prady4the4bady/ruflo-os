@@ -1,0 +1,15 @@
+name: code_execution
+description: Write and run code skill
+trigger_phrases:
+  - "write code"
+  - "run script"
+  - "execute code"
+steps:
+  - open terminal
+  - write code to file
+  - execute code
+  - capture output
+required_tools:
+  - terminal_tool
+  - file_tool
+  - keyboard_control

@@ -1,0 +1,24 @@
+FROM python:3.12-slim-bookworm
+
+WORKDIR /app
+
+# System dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy Hermes integration
+COPY hermes-integration/ /app/
+COPY ruflo-agent/skills /app/skills
+
+# Non-root user
+RUN useradd -m -u 1000 ruflo && \
+    chown -R ruflo:ruflo /app
+USER ruflo
+
+CMD ["python", "-m", "hermes-integration.hermes_client"]

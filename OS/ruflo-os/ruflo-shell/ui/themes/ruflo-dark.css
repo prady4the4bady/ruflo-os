@@ -1,0 +1,179 @@
+/* Ruflo Dark Theme - GTK4 CSS */
+/* macOS-inspired dark theme for Ruflo OS */
+
+/* CSS Custom Properties */
+@define-color bg #1c1c1e;
+@define-color surface #2c2c2e;
+@define-color surface2 #3a3a3c;
+@define-color accent #0a84ff;
+@define-color accent_green #30d158;
+@define-color accent_red #ff453a;
+@define-color accent_orange #ff9f0a;
+@define-color text #ffffff;
+@define-color text_secondary rgba(255, 255, 255, 0.6);
+@define-color border rgba(255, 255, 255, 0.1);
+
+/* Window backgrounds */
+window, .ruflo-window, .task-intake-window, .agent-monitor-window, .model-manager-window {
+    background-color: @bg;
+    color: @text;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", Inter, sans-serif;
+}
+
+/* MenuBar */
+headerbar, .menubar {
+    background-color: rgba(28, 28, 30, 0.8);
+    color: @text;
+    min-height: 24px;
+    font-size: 12px;
+    border-bottom: 1px solid @border;
+    backdrop-filter: blur(20px) saturate(180%);
+}
+
+.menubar button {
+    background: transparent;
+    border: none;
+    color: @text;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.menubar button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Dock */
+.dock {
+    background: rgba(44, 44, 46, 0.7);
+    border-radius: 16px;
+    padding: 6px 12px;
+    margin: 0 auto;
+    backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.dock button {
+    background: transparent;
+    border: none;
+    padding: 6px;
+    border-radius: 8px;
+    transition: all 150ms ease;
+}
+
+.dock button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.5);
+}
+
+/* Spotlight */
+.search-bar, .spotlight-container {
+    background: rgba(44, 44, 46, 0.9);
+    border-radius: 12px;
+    padding: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px) saturate(180%);
+}
+
+.search-bar entry, .spotlight-container entry {
+    font-size: 16px;
+    border: none;
+    background: transparent;
+    color: @text;
+    padding: 8px;
+}
+
+/* Notifications */
+.notification-popup {
+    background: rgba(44, 44, 46, 0.9);
+    border-radius: 12px;
+    padding: 8px 12px;
+    backdrop-filter: blur(20px) saturate(180%);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    animation: slide-in 300ms ease;
+}
+
+@keyframes slide-in {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.notification-popup.dismiss {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.notification-title {
+    color: @text;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.notification-message {
+    color: @text_secondary;
+    font-size: 12px;
+}
+
+/* Buttons */
+button, .button {
+    background: @surface;
+    border: 1px solid @border;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 13px;
+    color: @text;
+    transition: all 120ms ease;
+}
+
+button:hover, .button:hover {
+    background: @surface2;
+}
+
+button.suggested-action {
+    background: @accent;
+    color: white;
+    border: none;
+}
+
+button.destructive-action {
+    background: @accent_red;
+    color: white;
+    border: none;
+}
+
+/* Labels */
+.label, label {
+    color: @text;
+}
+
+.label.secondary, label.secondary {
+    color: @text_secondary;
+    font-size: 12px;
+}
+
+/* Entries */
+entry, .entry {
+    background: @surface;
+    border: 1px solid @border;
+    border-radius: 6px;
+    padding: 6px 8px;
+    font-size: 13px;
+    color: @text;
+}
+
+entry:focus, .entry:focus {
+    border-color: @accent;
+    box-shadow: 0 0 0 2px @accent;
+}
+
+/* Scrollbar */
+scrollbar slider {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    min-width: 8px;
+    min-height: 8px;
+}
+
+scrollbar slider:hover {
+    background: rgba(255, 255, 255, 0.3);
+}

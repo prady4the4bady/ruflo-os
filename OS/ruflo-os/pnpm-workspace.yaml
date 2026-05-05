@@ -1,0 +1,4 @@
+packages:
+  - "shell/launcher"
+  - "shell/ai-activity"
+  - "shell/top-bar"

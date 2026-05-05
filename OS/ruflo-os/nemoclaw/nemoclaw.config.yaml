@@ -1,0 +1,38 @@
+# Nemoclaw Configuration File
+# Ruflo OS - AI Architecture Layer
+
+inference_router:
+  default_model: hermes-3-70b-q4
+  fallback_cloud: nvidia-nemotron
+  gpu_auto_detect: true
+  routing_strategy: task_aware
+  context_length: 131072
+  temperature: 0.7
+
+sandbox:
+  default_memory_mb: 2048
+  default_cpu_percent: 80
+  network_whitelist:
+    - "api.openai.com"
+    - "integrate.api.nvidia.com"
+    - "huggingface.co"
+  filesystem_whitelist:
+    - "/sandbox"
+    - "/tmp"
+    - "/opt/ruflo/models"
+  syscall_policy: "security/syscall_allowlist.txt"
+
+model_cache_dir: /opt/ruflo/models
+socket_path: /run/nemoclaw.sock
+health_port: 8001
+kernel_device: /dev/ai_bridge
+
+logging:
+  level: INFO
+  format: json
+  output: /var/ruflo/logs/nemoclaw.log
+
+daemon:
+  pid_file: /run/nemoclaw.pid
+  user: ruflo
+  group: ruflo

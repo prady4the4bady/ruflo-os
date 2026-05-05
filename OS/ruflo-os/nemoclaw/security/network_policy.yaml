@@ -1,0 +1,18 @@
+rules:
+  - id: allow-https
+    action: allow
+    resource: egress
+    pattern: "*:443"
+    description: Allow outbound HTTPS
+
+  - id: allow-http
+    action: allow
+    resource: egress
+    pattern: "*:80"
+    description: Allow outbound HTTP
+
+  - id: deny-all-other
+    action: deny
+    resource: egress
+    pattern: "*:*"
+    description: Deny all other egress

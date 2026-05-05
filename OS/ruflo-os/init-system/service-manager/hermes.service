@@ -1,0 +1,15 @@
+[Unit]
+Description=Hermes Agent Integration
+After=ruflo-agent.service
+Requires=ruflo-agent.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /app/hermes-integration/hermes_client.py
+Restart=on-failure
+RestartSec=5s
+User=ruflo
+Group=ruflo
+
+[Install]
+WantedBy=multi-user.target

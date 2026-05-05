@@ -1,0 +1,16 @@
+name: web_research
+description: Research a topic on the web and summarize
+trigger_phrases:
+  - "research"
+  - "find information about"
+  - "look up"
+steps:
+  - open browser
+  - search for topic
+  - read top 3 results
+  - synthesize and summarize
+required_tools:
+  - browser_tool
+  - vision_tool
+  - keyboard_control
+  - screen_capture
