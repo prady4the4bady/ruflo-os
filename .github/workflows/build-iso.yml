@@ -14,8 +14,10 @@ jobs:"
     timeout-minutes: 120"
     
     steps:"
-    - name: Checkout"
+    - name: Checkout repository"
       uses: actions/checkout@v4"
+      with:"
+        path: ."
       
     - name: Install dependencies"
       run: |"

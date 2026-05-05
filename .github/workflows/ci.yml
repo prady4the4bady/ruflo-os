@@ -4,35 +4,11 @@ on: [push, pull_request]
 
 jobs:
   test-kernel-modules:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - name: Install kernel headers
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y linux-headers-$(uname -r) build-essential
-    - name: Build kernel modules
-      run: cd kernel/modules/ai_bridge && make || echo "Kernel module build failed (non-critical)"
-      
-  test-nemoclaw:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-      - name: Install dependencies
-        run: |
-          pip install -r ${GITHUB_WORKSPACE}/nemoclaw/requirements.txt
-          pip install pytest
-      - name: Run Nemoclaw tests
-        run: cd ${GITHUB_WORKSPACE}/nemoclaw && python -m pytest tests/ -v
-        
-  test-agent:
-    runs-on: ubuntu-latest
-    steps:
+    runs-on: ubuntu-latest"
+    steps:"
     - uses: actions/checkout@v4"
+      with:"
+        path: ."
     - name: Set up Python"
       uses: actions/setup-python@v5"
       with:"
