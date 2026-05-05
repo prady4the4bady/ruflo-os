@@ -13,6 +13,7 @@
 #include <linux/wait.h>
 #include <linux/list.h>
 #include <linux/device.h>
+#include <net/net_namespace.h>
 #include <linux/input-event-codes.h>
 #include "ai_bridge.h"
 
@@ -51,12 +52,11 @@ static long ai_bridge_ioctl(struct file *file, unsigned int cmd, unsigned long a
         if (copy_from_user(&ev, (void __user *)arg, sizeof(ev)))
             return -EFAULT;
         // Inject key event via uinput
-        struct input_event kev = {
-            .type = EV_KEY,
-            .code = ev.code,
-            .value = ev.value,
-            .time = { .tv_sec = 0, .tv_usec = 0 }
-        };
+        struct input_event kev;
+        memset(&kev, 0, sizeof(kev));
+        kev.type = EV_KEY;
+        kev.code = ev.code;
+        kev.value = ev.value;
         // TODO: Send to uinput device
         break;
     }
@@ -156,7 +156,7 @@ static int __init ai_bridge_init(void)
     if (ret < 0)
         goto err_unregister;
 
-    ai_bridge_class = class_create(THIS_MODULE, CLASS_NAME);
+    ai_bridge_class = class_create(CLASS_NAME);
     if (IS_ERR(ai_bridge_class)) {
         ret = PTR_ERR(ai_bridge_class);
         goto err_cdev_del;
