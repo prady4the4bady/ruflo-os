@@ -17,15 +17,15 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        path: ruflo-os
-    
+        path: .  # Checkout to workspace root
+      
     - name: Install dependencies
       run: |
         apt-get update
         apt-get install -y live-build wget xorriso curl debootstrap
           
     - name: Setup and Build ISO
-      working-directory: ruflo-os/distro/live-build
+      working-directory: ${{ github.workspace }}/distro/live-build
       run: |
         # Create build directory
         mkdir -p /tmp/ruflo-os-build
@@ -50,28 +50,28 @@ jobs:
         
         # Copy package lists
         mkdir -p config/package-lists
-        cp ../../ruflo-os/distro/packages/base.list config/package-lists/base.list.chroot 2>/dev/null || echo "Warning: base.list not found"
-        cp ../../ruflo-os/distro/packages/desktop.list config/package-lists/desktop.list.chroot 2>/dev/null || echo "Warning: desktop.list not found"
-        cp ../../ruflo-os/distro/packages/ai-runtime.list config/package-lists/ai-runtime.list.chroot 2>/dev/null || echo "Warning: ai-runtime.list not found"
+        cp ${{ github.workspace }}/distro/packages/base.list config/package-lists/base.list.chroot 2>/dev/null || echo "Warning: base.list not found"
+        cp ${{ github.workspace }}/distro/packages/desktop.list config/package-lists/desktop.list.chroot 2>/dev/null || echo "Warning: desktop.list not found"
+        cp ${{ github.workspace }}/distro/packages/ai-runtime.list config/package-lists/ai-runtime.list.chroot 2>/dev/null || echo "Warning: ai-runtime.list not found"
         
         # Copy hooks
         mkdir -p config/hooks/normal
-        if [ -f ../../ruflo-os/distro/live-build/hooks/0100-ruflo-setup.hook.chroot ]; then
-          cp ../../ruflo-os/distro/live-build/hooks/0100-ruflo-setup.hook.chroot config/hooks/normal/
+        if [ -f ${{ github.workspace }}/distro/live-build/hooks/0100-ruflo-setup.hook.chroot ]; then
+          cp ${{ github.workspace }}/distro/live-build/hooks/0100-ruflo-setup.hook.chroot config/hooks/normal/
           chmod +x config/hooks/normal/0100-ruflo-setup.hook.chroot
         fi
-        if [ -f ../../ruflo-os/distro/live-build/hooks/0200-ruflo-install.hook.chroot ]; then
-          cp ../../ruflo-os/distro/live-build/hooks/0200-ruflo-install.hook.chroot config/hooks/normal/
+        if [ -f ${{ github.workspace }}/distro/live-build/hooks/0200-ruflo-install.hook.chroot ]; then
+          cp ${{ github.workspace }}/distro/live-build/hooks/0200-ruflo-install.hook.chroot config/hooks/normal/
           chmod +x config/hooks/normal/0200-ruflo-install.hook.chroot
         fi
         
         # Copy systemd services
         mkdir -p config/includes.chroot/etc/systemd/system
-        cp ../../ruflo-os/distro/systemd/*.service config/includes.chroot/etc/systemd/system/ 2>/dev/null || true
+        cp ${{ github.workspace }}/distro/systemd/*.service config/includes.chroot/etc/systemd/system/ 2>/dev/null || true
         
         # Copy branding
         mkdir -p config/includes.chroot/etc/calamares
-        cp -r ../../ruflo-os/distro/calamares/* config/includes.chroot/etc/calamares/ 2>/dev/null || true
+        cp -r ${{ github.workspace }}/distro/calamares/* config/includes.chroot/etc/calamares/ 2>/dev/null || true
         
         # Build ISO
         lb build 2>&1 | tee build.log
