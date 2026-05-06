@@ -78,7 +78,7 @@ jobs:
         cp -r ${{ github.workspace }}/distro/calamares/* config/includes.chroot/etc/calamares/ 2>/dev/null || true
         
         # Build ISO
-        lb build 2>&1 | tee build.log
+        sudo lb build 2>&1 | tee build.log
         
     - name: Check build output
       working-directory: /tmp/ruflo-os-build
