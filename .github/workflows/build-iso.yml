@@ -50,7 +50,8 @@ jobs:
           --mode debian \
           --system live \
           --apt-recommends false \
-          --security false
+          --security false \
+          --contents false
         
         # Copy package lists
         mkdir -p config/package-lists
