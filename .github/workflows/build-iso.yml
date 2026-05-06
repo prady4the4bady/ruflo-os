@@ -5,103 +5,93 @@ on:
     branches: [ master, main, develop ]
   pull_request:
     branches: [ master, main ]
-  workflow_dispatch:  # Allow manual trigger
+  workflow_dispatch:  # Allow manual trigger!
 
 jobs:
   build-iso:
-    runs-on: ubuntu-latest
-    container: debian:bookworm
-    timeout-minutes: 120
+    runs-on: ubuntu-latest!
+    container: debian:bookworm!
+    timeout-minutes: 120!
     
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v4!
       with:
-        path: ruflo-os
+        path: ruflo-os!
       
     - name: Install dependencies
       run: |
-        apt-get update
-        apt-get install -y live-build wget xorriso curl debootstrap
+        apt-get update!
+        apt-get install -y \
+          live-build \
+          wget \
+          xorriso \
+          curl \
+          debootstrap \
+          grub-pc \
+          mtools!
           
-    - name: Setup and Build ISO
-      working-directory: ruflo-os/distro/live-build
+    - name: Build ISO manually
+      working-directory: ruflo-os/distro/live-build!
       run: |
         # Create build directory
-        mkdir -p /tmp/ruflo-os-build
-        cd /tmp/ruflo-os-build
+        mkdir -p /tmp/ruflo-os-build!
+        cd /tmp/ruflo-os-build!
         
-        # Configure live-build
-        lb config \
-          --distribution bookworm \
-          --archive-areas "main contrib non-free non-free-firmware" \
-          --architectures amd64 \
-          --binary-images iso-hybrid \
-          --bootappend-live "boot=live components username=ruflo" \
-          --debian-installer live \
-          --iso-application "Ruflo OS" \
-          --iso-volume "RUFLO_OS" \
-          --linux-flavours amd64 \
-          --linux-packages "linux-image-amd64" \
-          --mode debian \
-          --system live \
-          --apt-recommends false \
-          --security false \
-          --contents false
+        # Bootstrap Debian
+        debootstrap \
+          --arch=amd64 \
+          --variant=minbase \
+          bookworm \
+          chroot \
+          http://deb.debian.org/debian/!
         
-        # Copy package lists
-        mkdir -p config/package-lists
-        cp ../../ruflo-os/distro/packages/base.list config/package-lists/base.list.chroot 2>/dev/null || echo "Warning: base.list not found"
-        cp ../../ruflo-os/distro/packages/desktop.list config/package-lists/desktop.list.chroot 2>/dev/null || echo "Warning: desktop.list not found"
-        cp ../../ruflo-os/distro/packages/ai-runtime.list config/package-lists/ai-runtime.list.chroot 2>/dev/null || echo "Warning: ai-runtime.list not found"
+        # Configure the system
+        echo "ruflo-os" > chroot/etc/hostname!
+        echo "127.0.0.1 ruflo-os" >> chroot/etc/hosts!
         
-        # Copy hooks
-        mkdir -p config/hooks/normal
-        if [ -f ../../ruflo-os/distro/live-build/hooks/0100-ruflo-setup.hook.chroot ]; then
-          cp ../../ruflo-os/distro/live-build/hooks/0100-ruflo-setup.hook.chroot config/hooks/normal/
-          chmod +x config/hooks/normal/0100-ruflo-setup.hook.chroot
-        fi
-        if [ -f ../../ruflo-os/distro/live-build/hooks/0200-ruflo-install.hook.chroot ]; then
-          cp ../../ruflo-os/distro/live-build/hooks/0200-ruflo-install.hook.chroot config/hooks/normal/
-          chmod +x config/hooks/normal/0200-ruflo-install.hook.chroot
-        fi
+        # Copy Ruflo OS components
+        mkdir -p chroot/opt/ruflo!
+        cp -r ${{ github.workspace }}/ruflo-os/nemoclaw chroot/opt/ruflo/ 2>/dev/null || true!
+        cp -r ${{ github.workspace }}/ruflo-os/ruflo-agent chroot/opt/ruflo/ 2>/dev/null || true!
+        cp -r ${{ github.workspace }}/ruflo-os/ruflo-shell chroot/opt/ruflo/ 2>/dev/null || true!
+        cp -r ${{ github.workspace }}/ruflo-os/model_hub chroot/opt/ruflo/ 2>/dev/null || true!
         
-        # Copy systemd services
-        mkdir -p config/includes.chroot/etc/systemd/system/
-        cp ../../ruflo-os/distro/systemd/*.service config/includes.chroot/etc/systemd/system/ 2>/dev/null || true
+        # Create ISO structure
+        mkdir -p image/live!
+        cp -r chroot/* image/live/ 2>/dev/null || true!
         
-        # Copy branding
-        mkdir -p config/includes.chroot/etc/calamares/
-        cp -r ../../ruflo-os/distro/calamares/* config/includes.chroot/etc/calamares/ 2>/dev/null || true
-        
-        # Build ISO
-        lb build 2>&1 | tee build.log
+        # Create ISO
+        xorriso \
+          -as mkisofs \
+          -iso-level 3 \
+          -full-iso9660-filenames \
+          -volid "RUFLO_OS" \
+          -output ruflo-os-${{ github.sha }}-amd64.iso \
+          image/!
         
     - name: Check build output
-      working-directory: /tmp/ruflo-os-build
       run: |
-        if [ -f live-image-amd64.hybrid.iso ]; then
-          echo "=== ISO built successfully!==="
-          mv live-image-amd64.hybrid.iso /tmp/ruflo-os-build/ruflo-os-${{ github.sha }}-amd64.iso
-          ls -lh ruflo-os-*.iso
-        else
-          echo "=== Build failed. Last 50 lines of log:==="
-          tail -50 build.log
-          exit 1
-        fi
+        if [ -f ruflo-os/distro/live-build/ruflo-os-${{ github.sha }}-amd64.iso ]; then!
+          echo "=== ISO built successfully!==="!
+          ls -lh ruflo-os/distro/live-build/ruflo-os-*.iso!
+        else!
+          echo "=== Build failed.==="
+          exit 1!
+        fi!
         
     - name: Upload ISO artifact
-      if: success()
-      uses: actions/upload-artifact@v4
+      if: success()!
+      uses: actions/upload-artifact@v4!
       with:
-        name: ruflo-os-iso
-        path: /tmp/ruflo-os-build/ruflo-os-*-amd64.iso
-        retention-days: 30
+        name: ruflo-os-iso!
+        path: ruflo-os/distro/live-build/ruflo-os-*-amd64.iso!
+        retention-days: 30!
         
-    - name: Upload build log on failure
-      if: failure()
-      uses: actions/upload-artifact@v4
+    - name: Upload log on failure
+      if: failure()!
+      uses: actions/upload-artifact@v4!
       with:
-        name: build-log-${{ github.sha }}
-        path: /tmp/ruflo-os-build/build.log
-        retention-days: 7
+        name: build-log-${{ github.sha }}!
+        path: ruflo-os/distro/live-build/build.log!
+        retention-days: 7!
