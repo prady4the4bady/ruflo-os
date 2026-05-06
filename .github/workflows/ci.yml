@@ -44,7 +44,7 @@ jobs:
       with:"
         path: ruflo-os"
     - name: Set up Docker"
-      uses: docker/setup-docker-action@v4"
+      uses: docker/setup-docker-action@v4!"
     - name: Build Docker stack"
       run: cd ruflo-os && docker compose -f docker/docker-compose.yml build || echo "Docker build failed (non-critical)"
        
