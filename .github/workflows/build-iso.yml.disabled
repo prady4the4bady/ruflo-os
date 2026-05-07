@@ -1,0 +1,118 @@
+# DISABLED: This workflow is disabled because live-build fails in GitHub Actions
+# with 404 errors when downloading package Contents files.
+# See BUILD.md for native Debian build instructions (WSL2 recommended).
+#
+# To re-enable: remove this comment block and rename file to build-iso.yml
+
+name: Build NemOS ISO (DISABLED)
+
+on:
+  push:
+    branches: [ master, main, develop ]
+  pull_request:
+    branches: [ master, main ]
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  build-iso:
+    runs-on: ubuntu-latest
+    container: debian:bookworm
+    timeout-minutes: 120
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        apt-get update
+        apt-get install -y live-build wget xorriso curl debootstrap
+
+    - name: Setup and Build ISO
+      working-directory: distro/live-build
+      run: |
+        mkdir -p /tmp/ruflo-os-build
+        cd /tmp/ruflo-os-build
+
+        # Configure live-build
+        lb config \
+          --distribution bookworm \
+          --archive-areas "main contrib non-free non-free-firmware" \
+          --architectures amd64 \
+          --binary-images iso-hybrid \
+          --bootappend-live "boot=live components username=ruflo" \
+          --debian-installer live \
+          --iso-application "Ruflo OS" \
+          --iso-volume "RUFLO_OS" \
+          --linux-flavours amd64 \
+          --linux-packages "linux-image-amd64" \
+          --mode debian \
+          --system live \
+          --apt-recommends false \
+          --security false
+
+        # Copy package lists
+        mkdir -p config/package-lists
+        cp ${{ github.workspace }}/distro/packages/base.list config/package-lists/base.list.chroot
+        cp ${{ github.workspace }}/distro/packages/desktop.list config/package-lists/desktop.list.chroot
+        cp ${{ github.workspace }}/distro/packages/ai-runtime.list config/package-lists/ai-runtime.list.chroot
+
+        # Copy hooks
+        mkdir -p config/hooks/normal
+
+        # Base setup hook
+        cat > config/hooks/normal/0100-ruflo-setup.hook.chroot << 'HOOK'
+        #!/bin/bash
+        set -e
+        useradd --system --home-dir /opt/ruflo --shell /usr/sbin/nologin ruflo || true
+        mkdir -p /opt/ruflo /var/lib/ruflo /etc/ruflo
+        chown -R ruflo:ruflo /opt/ruflo /var/lib/ruflo
+        python3 -m venv /opt/ruflo/venv
+        HOOK
+        chmod +x config/hooks/normal/0100-ruflo-setup.hook.chroot
+
+        # NemOS install hook
+        if [ -f ${{ github.workspace }}/distro/live-build/hooks/0200-ruflo-install.hook.chroot ]; then
+          cp ${{ github.workspace }}/distro/live-build/hooks/0200-ruflo-install.hook.chroot config/hooks/normal/
+          chmod +x config/hooks/normal/0200-ruflo-install.hook.chroot
+        fi
+
+        # Copy systemd services
+        mkdir -p config/includes.chroot/etc/systemd/system
+        cp ${{ github.workspace }}/distro/systemd/*.service config/includes.chroot/etc/systemd/system/ || true
+
+        # Copy branding
+        mkdir -p config/includes.chroot/etc/calamares
+        cp -r ${{ github.workspace }}/distro/calamares/* config/includes.chroot/etc/calamares/ || true
+
+        # Build ISO
+        lb build 2>&1 | tee build.log
+
+    - name: Check build output
+      working-directory: /tmp/ruflo-os-build
+      run: |
+        if [ -f live-image-amd64.hybrid.iso ]; then
+          echo "=== ISO built successfully!==="
+          mv live-image-amd64.hybrid.iso /tmp/ruflo-os-build/ruflo-os-${{ github.sha }}-amd64.iso
+          ls -lh ruflo-os-*.iso
+        else
+          echo "=== Build failed. Last 50 lines of log:"
+          tail -50 build.log
+          exit 1
+        fi
+
+    - name: Upload ISO artifact
+      if: success()
+      uses: actions/upload-artifact@v4
+      with:
+        name: ruflo-os-iso
+        path: /tmp/ruflo-os-build/ruflo-os-*-amd64.iso
+        retention-days: 30
+
+    - name: Upload build log on failure
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-log-${{ github.sha }}
+        path: /tmp/ruflo-os-build/build.log
+        retention-days: 7

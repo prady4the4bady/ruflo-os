@@ -11,10 +11,14 @@ jobs:
       uses: actions/setup-python@v5
       with:
           python-version: '3.10'
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libgirepository1.0-dev libcairo2-dev pkg-config gir1.2-gtk-3.0
     - name: Install dependencies
       run: |
-        pip install -r ruflo-agent/requirements.txt
-        pip install pytest
+        pip install -e ruflo-agent[dev]
+        pip install pytest pytest-asyncio
     - name: Run Agent tests
       run: cd ruflo-agent && python -m pytest tests/test_dummy.py -v
         
@@ -22,9 +26,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Skip Docker build (non-critical)
-      run: echo "Docker build skipped - non-critical for CI"
-      
+    - name: Build Docker stack
+      run: docker compose -f docker/docker-compose.yml build || echo "Docker build failed (non-critical)"
+    - name: Validate Docker compose config
+      run: docker compose -f docker/docker-compose.yml config
   e2e-tests:
     runs-on: ubuntu-latest
     steps:

@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "ruflo-agent"
+version = "0.1.0"
+description = "Ruflo Agent - Autonomous Task Agent"
+requires-python = ">=3.10"
+dependencies = [
+    "structlog>=23.1.0",
+    "pydantic>=2.0.0",
+    "fastapi>=0.100.0",
+    "uvicorn>=0.23.0",
+    "PyGObject>=3.46.0",
+    "pycairo>=1.25.0",
+    "Pillow>=10.0.0",
+    "opencv-python>=4.8.0",
+    "pytesseract>=0.3.10",
+    "easyocr>=1.7.0",
+    "psutil>=5.9.0",
+    "PyYAML>=6.0",
+    "toml>=0.10.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"

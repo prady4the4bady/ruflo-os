@@ -2,6 +2,15 @@
 
 This guide explains how to build the Ruflo OS ISO image for testing in VMware, VirtualBox, or bare metal.
 
+## CI Build Status
+
+**Note**: The ISO build workflow (`.github/workflows/build-iso.yml`) is currently disabled for GitHub Actions CI due to:
+- `live-build` requiring systemd and specific Debian repository access
+- 404 errors when downloading package Contents file in CI environment
+- Native Debian environment required for reliable builds
+
+To build the ISO, use one of the native build options below.
+
 ## Prerequisites
 
 - A Debian or Ubuntu system (or WSL2 on Windows)
