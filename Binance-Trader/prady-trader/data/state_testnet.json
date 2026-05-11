@@ -1,0 +1,107 @@
+{
+  "system_running": false,
+  "trading_mode": "testnet",
+  "runtime_mode": "testnet",
+  "mode_label": "TESTNET",
+  "mode_policy": {
+    "mode": "testnet",
+    "title": "Testnet Rehearsal",
+    "purpose": "Exercise real exchange workflows on Binance Spot Testnet with zero-risk balances and exchange-side order routing.",
+    "capital_source": "Binance Spot Testnet balances",
+    "execution_model": "Binance Spot Testnet",
+    "result_label": "Dress-rehearsal PnL",
+    "primary_goal": "Validate execution timing, order placement, and operational safety on real exchange plumbing.",
+    "guardrail": "Do not use live-account wealth to justify testnet trades; testnet is rehearsal, not wealth generation."
+  },
+  "mode_policies": {
+    "paper": {
+      "mode": "paper",
+      "title": "Paper Practice",
+      "purpose": "Rehearse strategy logic with simulated capital and internal fills before touching any exchange account.",
+      "capital_source": "Simulated ledger only",
+      "execution_model": "Internal paper engine",
+      "result_label": "Practice PnL",
+      "primary_goal": "Improve timing, coin selection, and process quality without financial risk.",
+      "guardrail": "Do not treat paper gains as proof of live readiness or as spendable capital."
+    },
+    "testnet": {
+      "mode": "testnet",
+      "title": "Testnet Rehearsal",
+      "purpose": "Exercise real exchange workflows on Binance Spot Testnet with zero-risk balances and exchange-side order routing.",
+      "capital_source": "Binance Spot Testnet balances",
+      "execution_model": "Binance Spot Testnet",
+      "result_label": "Dress-rehearsal PnL",
+      "primary_goal": "Validate execution timing, order placement, and operational safety on real exchange plumbing.",
+      "guardrail": "Do not use live-account wealth to justify testnet trades; testnet is rehearsal, not wealth generation."
+    },
+    "live": {
+      "mode": "live",
+      "title": "Live Capital",
+      "purpose": "Trade the real Binance account where every order affects actual holdings and account growth.",
+      "capital_source": "Real Binance spot balances",
+      "execution_model": "Binance Spot Mainnet",
+      "result_label": "Realized capital performance",
+      "primary_goal": "Grow and protect real capital with disciplined timing, symbol selection, and risk control.",
+      "guardrail": "Capital preservation outranks experimentation; only high-conviction, fully-audited trades belong here."
+    }
+  },
+  "execution_environment": "testnet",
+  "cycle_count": 1,
+  "uptime_seconds": 3.8591387271881104,
+  "balance": 89310.38667505,
+  "equity": 409138.0671298086,
+  "initial_balance": 10000.0,
+  "total_return_pct": 3991.380671298086,
+  "total_pnl": 399138.0671298086,
+  "daily_pnl": 399138.0671298086,
+  "total_trades": 0,
+  "win_rate": 0.0,
+  "best_trade": 0.0,
+  "worst_trade": 0.0,
+  "open_positions": [],
+  "closed_trades": [],
+  "last_decisions": {},
+  "agent_signals": {},
+  "prices": {
+    "BTCUSDT": 77576.5,
+    "ETHUSDT": 2315.83,
+    "BNBUSDT": 637.72,
+    "SOLUSDT": 86.22,
+    "XRPUSDT": 1.433
+  },
+  "kill_switch": true,
+  "runtime_guard": {
+    "allowed": true,
+    "status": "ok",
+    "reasons": [],
+    "metrics": {
+      "current_equity": 409128.21878141,
+      "baseline_equity": 10000.0,
+      "baseline_loss_pct": 0.0,
+      "loss_limit_pct": 0.05,
+      "recent_closed_trades": 0,
+      "consecutive_losses": 0,
+      "max_consecutive_losses": 3
+    }
+  },
+  "active_symbols": [],
+  "configured_symbols": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "BNBUSDT",
+    "SOLUSDT",
+    "XRPUSDT"
+  ],
+  "execution_baseline_balance": 10000.0,
+  "realised_pnl": 0.0,
+  "journal_stats": {
+    "total_trades": 25,
+    "win_rate": 0.8,
+    "total_pnl": 552.4260309876181,
+    "avg_pnl": 22.097041239504723,
+    "best_trade": 368.86156580994,
+    "worst_trade": -212.35220908525199
+  },
+  "_updated_at": 1777085487.8433511,
+  "_updated_iso": "2026-04-25 02:51:27"
+}

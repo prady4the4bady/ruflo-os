@@ -1,0 +1,7 @@
+{
+  "model_type": "lstm",
+  "symbol": "XRPUSDT",
+  "timestamp": "20260415_204221",
+  "saved_at": "2026-04-15T20:47:39.468721+00:00",
+  "path": "C:\\Users\\prady\\Desktop\\Claude\\Binance-Trader\\prady-trader\\models\\XRPUSDT\\lstm_20260415_204221.pkl"
+}

@@ -1,0 +1,87 @@
+# ============================================
+# PRADY TRADER — Dependencies (all free packages)
+# ============================================
+
+# Exchange
+python-binance==1.0.19
+
+# Data Processing
+pandas==2.2.1
+numpy>=1.24.0,<2.0.0
+psutil>=5.9.0
+
+# Technical Indicators
+pandas_ta>=0.4.71b0
+
+# Machine Learning
+torch==2.2.1
+scikit-learn==1.4.1
+xgboost==2.0.3
+
+# Async Runtime
+aiohttp==3.9.3
+httpx==0.27.0
+
+# Cache / Pub-Sub
+redis==5.0.3
+
+# Database
+SQLAlchemy==2.0.28
+psycopg2-binary==2.9.9
+alembic==1.13.1
+
+# Analytics
+plotly==5.19.0
+
+# Notifications
+python-telegram-bot==21.0.1
+
+# Configuration
+python-dotenv==1.0.1
+pydantic==2.6.3
+pydantic-settings==2.2.1
+
+# Task Scheduling
+APScheduler==3.10.4
+
+# NLP / Sentiment
+transformers==4.38.2
+vaderSentiment>=3.3.2
+
+# Logging
+loguru>=0.7.2
+python-json-logger==2.0.7
+
+# Reddit API
+praw==7.7.1
+
+# Alternative Data (free)
+yfinance==0.2.37
+
+# RSS feeds
+feedparser>=6.0.10
+
+# WebSocket
+websockets==12.0
+
+# Web Server (market feed & webhooks)
+fastapi>=0.110.0
+uvicorn>=0.29.0
+pyngrok>=7.1.0
+
+# HTTP
+requests>=2.31.0
+
+# Retry / Progress
+tenacity>=8.2.0
+tqdm>=4.66.0
+
+# Testing
+pytest==8.1.1
+pytest-asyncio==0.23.5
+pytest-cov==4.1.0
+websockets==12.0
+orjson==3.9.15
+tenacity==8.2.3
+feedparser>=6.0.0
+tqdm>=4.66.0

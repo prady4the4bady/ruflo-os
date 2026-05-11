@@ -1,0 +1,7 @@
+{
+  "model_type": "lstm",
+  "symbol": "ETHUSDT",
+  "timestamp": "20260415_201716",
+  "saved_at": "2026-04-15T20:22:47.189807+00:00",
+  "path": "C:\\Users\\prady\\Desktop\\Claude\\Binance-Trader\\prady-trader\\models\\ETHUSDT\\lstm_20260415_201716.pkl"
+}

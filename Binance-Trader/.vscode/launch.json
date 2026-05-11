@@ -1,0 +1,78 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "PRADY: Paper Trading",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/prady-trader/scripts/start_paper.py",
+            "cwd": "${workspaceFolder}/prady-trader",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/prady-trader"
+            }
+        },
+        {
+            "name": "PRADY: Desktop Workstation",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/prady-trader/run_desktop.py",
+            "cwd": "${workspaceFolder}/prady-trader",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/prady-trader"
+            }
+        },
+        {
+            "name": "PRADY: Run Tests",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "pytest",
+            "args": ["-v", "--tb=short"],
+            "cwd": "${workspaceFolder}/prady-trader",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/prady-trader"
+            }
+        },
+        {
+            "name": "PRADY: Validate Build",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/prady-trader/scripts/validate_build.py",
+            "cwd": "${workspaceFolder}/prady-trader",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/prady-trader"
+            }
+        },
+        {
+            "name": "PRADY: Train Models",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/prady-trader/scripts/train_models.py",
+            "cwd": "${workspaceFolder}/prady-trader",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/prady-trader"
+            }
+        },
+        {
+            "name": "PRADY: Live Readiness Check",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/prady-trader/scripts/live_readiness_check.py",
+            "cwd": "${workspaceFolder}/prady-trader",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/prady-trader"
+            }
+        }
+    ]
+}

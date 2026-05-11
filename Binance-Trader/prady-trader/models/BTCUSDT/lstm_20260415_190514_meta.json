@@ -1,0 +1,7 @@
+{
+  "model_type": "lstm",
+  "symbol": "BTCUSDT",
+  "timestamp": "20260415_190514",
+  "saved_at": "2026-04-15T19:05:14.086383+00:00",
+  "path": "C:\\Users\\prady\\Desktop\\Claude\\Binance-Trader\\prady-trader\\models\\BTCUSDT\\lstm_20260415_190514.pkl"
+}

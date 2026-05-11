@@ -1,0 +1,7 @@
+{
+  "model_type": "xgboost",
+  "symbol": "XRPUSDT",
+  "timestamp": "20260415_204221",
+  "saved_at": "2026-04-15T20:47:46.083043+00:00",
+  "path": "C:\\Users\\prady\\Desktop\\Claude\\Binance-Trader\\prady-trader\\models\\XRPUSDT\\xgboost_20260415_204221.json"
+}

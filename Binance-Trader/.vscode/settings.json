@@ -1,0 +1,17 @@
+{
+    "python.analysis.typeCheckingMode": "off",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingTypeStubs": "none",
+        "reportMissingModuleSource": "none",
+        "reportGeneralTypeIssues": "none"
+    },
+    "mypy-type-checker.args": [
+        "--config-file=${workspaceFolder}/mypy.ini",
+        "--no-error-summary"
+    ],
+    "mypy-type-checker.severity": {
+        "error": "Information",
+        "note": "Information"
+    },
+    "python.defaultInterpreterPath": "${workspaceFolder}/prady-trader/venv/Scripts/python.exe"
+}

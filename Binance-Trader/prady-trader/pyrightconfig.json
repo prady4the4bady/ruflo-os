@@ -1,0 +1,9 @@
+{
+    "reportMissingTypeStubs": false,
+    "reportMissingModuleSource": false,
+    "reportUnknownMemberType": false,
+    "pythonVersion": "3.12",
+    "venvPath": ".",
+    "venv": "venv",
+    "extraPaths": ["."]
+}
